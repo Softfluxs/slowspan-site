@@ -23,19 +23,232 @@
             padding: 20px;
         }
 
-        /* Main Profile Card Container */
-        .profile-card {
-            background-color: rgba(18, 18, 18, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            width: 100%;
-            max-width: 420px;
-            padding: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        body {
+    background: radial-gradient(circle at center,
+        #0f1f0f 0%,
+        #0a0a0a 40%,
+        #050505 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Animated Profile Card */
+.profile-card {
+    position: relative;
+    overflow: hidden;
+
+    background-color: rgba(18, 18, 18, 0.85);
+    border: 1px solid rgba(57, 255, 20, 0.45);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
+
+    backdrop-filter: blur(12px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    animation:
+        greenGlow 2.5s ease-in-out infinite alternate,
+        floatCard 6s ease-in-out infinite;
+
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px) scale(1.01);
+}
+
+/* Rotating neon border */
+.profile-card::before {
+    content: "";
+    position: absolute;
+    inset: -200%;
+    background: conic-gradient(
+        transparent,
+        rgba(57,255,20,.9),
+        transparent,
+        transparent,
+        transparent
+    );
+    animation: rotateAura 5s linear infinite;
+    z-index: -2;
+}
+
+/* Dark inner panel */
+.profile-card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 22px;
+    background: rgba(18,18,18,.96);
+    z-index: -1;
+}
+
+/* Avatar Glow */
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid rgba(57,255,20,.5);
+
+    box-shadow:
+        0 0 10px rgba(57,255,20,.4),
+        0 0 25px rgba(57,255,20,.25);
+
+    animation: avatarGlow 2s ease-in-out infinite alternate;
+}
+
+/* Pulsing status */
+.status-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+
+    width: 14px;
+    height: 14px;
+
+    background: #39ff14;
+    border: 2.5px solid #121212;
+    border-radius: 50%;
+
+    animation: statusPulse 1.5s infinite;
+}
+
+/* Social buttons glow */
+.social-button {
+    width: 44px;
+    height: 44px;
+
+    background-color: rgba(255,255,255,.05);
+    border: 1px solid rgba(57,255,20,.2);
+
+    border-radius: 10px;
+    color: #aeaeacf2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+    text-decoration: none;
+
+    transition: all .25s ease;
+}
+
+.social-button:hover {
+    color: #39ff14;
+
+    border-color: #39ff14;
+
+    box-shadow:
+        0 0 10px rgba(57,255,20,.5),
+        0 0 20px rgba(57,255,20,.3);
+
+    transform: translateY(-3px);
+}
+
+/* Music player glow */
+.music-player,
+.activity-card {
+    transition: .3s ease;
+}
+
+.music-player:hover,
+.activity-card:hover {
+    border-color: rgba(57,255,20,.4);
+
+    box-shadow:
+        0 0 10px rgba(57,255,20,.15);
+}
+
+/* Username glow */
+.username {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+
+    text-shadow:
+        0 0 10px rgba(57,255,20,.3);
+}
+
+/* Animations */
+
+@keyframes greenGlow {
+    0% {
+        box-shadow:
+            0 0 10px rgba(57,255,20,.25),
+            0 0 20px rgba(57,255,20,.15),
+            0 0 40px rgba(57,255,20,.08);
+    }
+
+    100% {
+        box-shadow:
+            0 0 25px rgba(57,255,20,.8),
+            0 0 50px rgba(57,255,20,.45),
+            0 0 90px rgba(57,255,20,.2);
+    }
+}
+
+@keyframes rotateAura {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes floatCard {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes avatarGlow {
+    from {
+        box-shadow:
+            0 0 10px rgba(57,255,20,.3),
+            0 0 20px rgba(57,255,20,.15);
+    }
+
+    to {
+        box-shadow:
+            0 0 20px rgba(57,255,20,.8),
+            0 0 45px rgba(57,255,20,.4);
+    }
+}
+
+@keyframes statusPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(57,255,20,.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(57,255,20,0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(57,255,20,0);
+    }
+    
         }
 
         /* Top Music Section */
