@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profile</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
 * {
     box-sizing: border-box;
@@ -20,16 +18,14 @@ body {
         #0f1f0f 0%,
         #0a0a0a 40%,
         #050505 100%);
-    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    overflow: hidden;
 }
 
-/* Profile Card */
+/* CARD */
 .profile-card {
     position: relative;
     overflow: hidden;
@@ -39,25 +35,15 @@ body {
     border-radius: 24px;
 
     width: 100%;
-    max-width: 420px;
-    padding: 24px;
+    max-width: 380px;
+    padding: 30px;
 
     backdrop-filter: blur(12px);
 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    animation:
-        greenGlow 2.5s ease-in-out infinite alternate,
-        floatCard 6s ease-in-out infinite;
+    animation: greenGlow 2.5s ease-in-out infinite alternate;
 }
 
-.profile-card:hover {
-    transform: translateY(-8px) scale(1.01);
-}
-
-/* Rotating Aura */
+/* Rotating aura */
 .profile-card::before {
     content: "";
     position: absolute;
@@ -65,7 +51,6 @@ body {
     background: conic-gradient(
         transparent,
         rgba(57,255,20,.9),
-        transparent,
         transparent,
         transparent
     );
@@ -77,12 +62,12 @@ body {
     content: "";
     position: absolute;
     inset: 2px;
-    border-radius: 22px;
     background: rgba(18,18,18,.96);
+    border-radius: 22px;
     z-index: -1;
 }
 
-/* Avatar */
+/* AVATAR */
 .identity-section {
     display: flex;
     justify-content: center;
@@ -100,11 +85,10 @@ body {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    display: block;
     border: 2px solid rgba(255,255,255,0.1);
 }
 
-/* Status Dot */
+/* STATIC STATUS DOT (NO GLOW) */
 .status-dot {
     position: absolute;
     bottom: 4px;
@@ -116,61 +100,19 @@ body {
     background: #39ff14;
     border: 2px solid #121212;
     border-radius: 50%;
-
-    animation: statusPulse 1.5s infinite;
 }
 
-/* Activity */
-.activity-card {
-    background-color: rgba(255,255,255,0.04);
-    border-radius: 16px;
-    padding: 16px;
-
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-    border: 1px solid rgba(255,255,255,0.05);
-    transition: .3s ease;
-}
-
-.activity-card:hover {
-    box-shadow: 0 0 12px rgba(57,255,20,.2);
-}
-
-.activity-icon {
-    width: 32px;
-    height: 32px;
-
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.activity-text {
-    font-size: 14px;
-    font-weight: 500;
-    color: #e5e5ea;
-}
-
-/* Animations */
-
+/* ANIMATIONS */
 @keyframes greenGlow {
     0% {
         box-shadow:
-            0 0 10px rgba(57,255,20,.25),
-            0 0 20px rgba(57,255,20,.15),
-            0 0 40px rgba(57,255,20,.08);
+            0 0 10px rgba(57,255,20,.2),
+            0 0 20px rgba(57,255,20,.1);
     }
-
     100% {
         box-shadow:
-            0 0 25px rgba(57,255,20,.8),
-            0 0 50px rgba(57,255,20,.45),
-            0 0 90px rgba(57,255,20,.2);
+            0 0 25px rgba(57,255,20,.5),
+            0 0 50px rgba(57,255,20,.25);
     }
 }
 
@@ -178,58 +120,21 @@ body {
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
 }
-
-@keyframes floatCard {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes statusPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(57,255,20,.7);
-    }
-
-    70% {
-        box-shadow: 0 0 0 10px rgba(57,255,20,0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(57,255,20,0);
-    }
-}
 </style>
 </head>
+
 <body>
 
 <div class="profile-card">
 
     <div class="identity-section">
         <div class="avatar-container">
-            <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg" alt="Avatar" class="avatar">
+            <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg" class="avatar" alt="Avatar">
             <div class="status-dot"></div>
-        </div>
-    </div>
-
-    <div class="activity-card">
-        <div class="activity-icon">
-            <i class="fas fa-gamepad"></i>
-        </div>
-        <div class="activity-text">
-            Playing SiegeX with Medal
         </div>
     </div>
 
