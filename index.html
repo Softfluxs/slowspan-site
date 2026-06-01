@@ -122,11 +122,21 @@
             z-index: 2;
         }
 
+        /* Username Link Style */
+        .username-link {
+            text-decoration: none;
+            color: #ffffff;
+            transition: opacity 0.2s ease;
+        }
+
+        .username-link:hover {
+            opacity: 0.85;
+        }
+
         .username {
             font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.5px;
-            color: #ffffff;
         }
 
         .discord-tag {
@@ -216,10 +226,12 @@
 
         <div class="identity-section">
             <div class="avatar-container">
-                <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg" alt="1000024403" class="avatar">
+                <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg" alt="Avatar" class="avatar">
                 <div class="status-dot"></div>
             </div>
-            <h1 class="username">slowspan.</h1>
+            <a href="https://slowspan.world" target="_blank" class="username-link">
+                <h1 class="username">slowspan.</h1>
+            </a>
             <span class="discord-tag">@slowspan.</span>
         </div>
 
