@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile</title>
+<title>slowspan Profile</title>
 
 <style>
 * {
@@ -43,7 +43,7 @@ body {
     animation: greenGlow 2.5s ease-in-out infinite alternate;
 }
 
-/* Rotating aura */
+/* rotating aura */
 .profile-card::before {
     content: "";
     position: absolute;
@@ -67,11 +67,12 @@ body {
     z-index: -1;
 }
 
-/* AVATAR */
+/* avatar */
 .identity-section {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .avatar-container {
@@ -88,7 +89,7 @@ body {
     border: 2px solid rgba(255,255,255,0.1);
 }
 
-/* STATIC STATUS DOT (NO GLOW) */
+/* gray status dot */
 .status-dot {
     position: absolute;
     bottom: 4px;
@@ -97,12 +98,31 @@ body {
     width: 14px;
     height: 14px;
 
-    background: #39ff14;
+    background: #8a8a8a;
     border: 2px solid #121212;
     border-radius: 50%;
 }
 
-/* ANIMATIONS */
+/* name */
+.display-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+/* discord link */
+.discord-link {
+    font-size: 14px;
+    color: #aaa;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.discord-link:hover {
+    color: #39ff14;
+}
+
+/* animations */
 @keyframes greenGlow {
     0% {
         box-shadow:
@@ -117,12 +137,8 @@ body {
 }
 
 @keyframes rotateAura {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 </style>
 </head>
@@ -132,10 +148,22 @@ body {
 <div class="profile-card">
 
     <div class="identity-section">
+
         <div class="avatar-container">
             <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg" class="avatar" alt="Avatar">
             <div class="status-dot"></div>
         </div>
+
+        <div class="display-name">slowspan</div>
+
+        <!-- clickable discord redirect -->
+        <a class="discord-link"
+           href="https://discord.com/users/slowspan."
+           target="_blank"
+           rel="noopener noreferrer">
+           slowspan.
+        </a>
+
     </div>
 
 </div>
