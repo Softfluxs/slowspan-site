@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>slowspan Profile</title>
+    <title>slowspan. Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -106,18 +107,20 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
+            display: block;
         }
 
         /* Status indicator (dot) */
         .status-dot {
             position: absolute;
-            bottom: 6px;
-            right: 6px;
+            bottom: 4px;
+            right: 4px;
             width: 14px;
             height: 14px;
-            background-color: #ff3b30; /* Red status dot from the reference */
-            border: 2.5px solid rgba(18, 18, 18, 1);
+            background-color: #ff3b30;
+            border: 2.5px solid #121212;
             border-radius: 50%;
+            z-index: 2;
         }
 
         .username {
@@ -214,7 +217,7 @@
 
         <div class="identity-section">
             <div class="avatar-container">
-                <img src="https://via.placeholder.com/150" alt="Avatar" class="avatar">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Avatar" class="avatar">
                 <div class="status-dot"></div>
             </div>
             <h1 class="username">slowspan.</h1>
@@ -248,4 +251,3 @@
 
 </body>
 </html>
-
