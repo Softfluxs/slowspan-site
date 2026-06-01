@@ -1,188 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>slowspan hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slowspan Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+        body {
+            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-body {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  background: radial-gradient(circle at top, #141428, #07070d);
-  color: white;
-  overflow-x: hidden;
-}
+        /* Main Profile Card Container */
+        .profile-card {
+            background-color: rgba(18, 18, 18, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
+            padding: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-/* glow background */
-.glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  filter: blur(140px);
-  opacity: 0.25;
-  animation: float 8s infinite alternate;
-}
+        /* Top Music Section */
+        .music-player {
+            background-color: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
 
-.glow:nth-child(1) { background: #7f5af0; top: -100px; left: -100px; }
-.glow:nth-child(2) { background: #00d4ff; top: 200px; right: -120px; }
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-@keyframes float {
-  from { transform: translateY(0px); }
-  to { transform: translateY(60px); }
-}
+        .song-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
 
-.container {
-  position: relative;
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 20px;
-}
+        .song-artist {
+            font-size: 12px;
+            color: #8e8e93;
+        }
 
-/* glass card */
-.card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-}
+        .play-button {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-/* profile */
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+        .play-button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
 
-.avatar {
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-  border: 2px solid #7f5af0;
-  object-fit: cover;
-}
+        /* Identity Section */
+        .identity-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 10px;
+        }
 
-.name {
-  font-size: 24px;
-  font-weight: 700;
-}
+        .avatar-container {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin-bottom: 16px;
+        }
 
-.bio {
-  font-size: 13px;
-  opacity: 0.7;
-}
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
 
-/* grid */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 20px;
-}
+        /* Status indicator (dot) */
+        .status-dot {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            width: 14px;
+            height: 14px;
+            background-color: #ff3b30; /* Red status dot from the reference */
+            border: 2.5px solid rgba(18, 18, 18, 1);
+            border-radius: 50%;
+        }
 
-.section {
-  background: rgba(255,255,255,0.05);
-  border-radius: 14px;
-  padding: 15px;
-  border: 1px solid rgba(255,255,255,0.08);
-}
+        .username {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
 
-h3 {
-  margin-top: 0;
-  font-size: 13px;
-  opacity: 0.8;
-}
+        .discord-tag {
+            font-size: 14px;
+            color: #8e8e93;
+            margin-top: 4px;
+        }
 
-a {
-  color: #a78bfa;
-  text-decoration: none;
-}
+        /* Activity Section */
+        .activity-card {
+            background-color: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
 
-a:hover {
-  text-decoration: underline;
-}
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
 
-audio {
-  width: 100%;
-  margin-top: 10px;
-}
+        .activity-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e5e5ea;
+        }
 
-/* responsive */
-@media(max-width:800px){
-  .grid { grid-template-columns: 1fr; }
-}
-</style>
+        /* Divider Line */
+        .divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.06);
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        /* Social Icons Row */
+        .socials-row {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+
+        .social-button {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            color: #aeaeacf2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="glow"></div>
-<div class="glow"></div>
+    <div class="profile-card">
+        
+        <div class="music-player">
+            <div class="music-info">
+                <span class="song-title">Runaway</span>
+                <span class="song-artist">Kanye West</span>
+            </div>
+            <button class="play-button" aria-label="Play">
+                <i class="fas fa-play" style="font-size: 12px; margin-left: 2px;"></i>
+            </button>
+        </div>
 
-<div class="container">
-  <div class="card">
+        <div class="identity-section">
+            <div class="avatar-container">
+                <img src="https://via.placeholder.com/150" alt="Avatar" class="avatar">
+                <div class="status-dot"></div>
+            </div>
+            <h1 class="username">slowspan</h1>
+            <span class="discord-tag">@slowspan</span>
+        </div>
 
-    <!-- PROFILE -->
-    <div class="profile">
-      <img class="avatar" src="avatar.png" />
-      <div>
-        <div class="name">slowspan</div>
-        <div class="bio">Discord: slowspan • Vibing • Gaming • Coding</div>
-      </div>
-    </div>
+        <div class="activity-card">
+            <div class="activity-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="activity-text">
+                Playing SiegeX with Medal
+            </div>
+        </div>
 
-    <!-- GRID -->
-    <div class="grid">
+        <div class="divider"></div>
 
-      <!-- MUSIC -->
-      <div class="section">
-        <h3>Music Player</h3>
-        <audio controls>
-          <source src="music.mp3" type="audio/mpeg">
-        </audio>
-        <p style="opacity:0.5;font-size:11px;">Put music.mp3 in folder</p>
-      </div>
-
-      <!-- DISCORD USER -->
-      <div class="section">
-        <h3>Discord</h3>
-        <p><b>@slowspan</b></p>
-        <p>
-          <a href="https://discord.com/users/YOUR_USER_ID">
-            Add Me on Discord
-          </a>
-        </p>
-      </div>
-
-      <!-- DISCORD SERVER -->
-      <div class="section">
-        <h3>Discord Server</h3>
-        <iframe
-          src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark"
-          width="100%"
-          height="180"
-          frameborder="0"
-          style="border-radius:10px;">
-        </iframe>
-      </div>
-
-      <!-- SPOTIFY -->
-      <div class="section">
-        <h3>Spotify</h3>
-        <iframe style="border-radius:12px"
-          src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT"
-          width="100%" height="152"
-          frameborder="0">
-        </iframe>
-      </div>
+        <div class="socials-row">
+            <a href="https://github.com" target="_blank" class="social-button" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="social-button" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-button" aria-label="Custom Platform">
+                <i class="fas fa-shield-halved"></i>
+            </a>
+        </div>
 
     </div>
-  </div>
-</div>
 
 </body>
 </html>
+
