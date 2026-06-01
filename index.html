@@ -1,60 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>slowspan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile Hub</title>
+
   <style>
     body {
       margin: 0;
-      background: linear-gradient(135deg, #000000, #111111);
-      color: white;
       font-family: Arial, sans-serif;
+      background: #0f0f13;
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
+      min-height: 100vh;
     }
-    .card {
-      padding: 30px;
-      border: 1px solid #333;
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      background: #1a1a22;
+      padding: 20px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-      width: 280px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    h1 {
-      margin: 0;
-      font-size: 28px;
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
-    p {
-      color: #aaa;
-      margin-bottom: 20px;
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: gray;
     }
-    a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid #333;
-      border-radius: 10px;
-      transition: 0.2s;
+
+    .username {
+      font-size: 24px;
+      font-weight: bold;
     }
-    a:hover {
-      background: white;
-      color: black;
+
+    .bio {
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #22222c;
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="card">
-    <h1>@slowspan</h1>
-    <p>links page</p>
 
-    <a href="https://discord.com">Discord</a>
-    <a href="https://github.com">GitHub</a>
-    <a href="https://instagram.com">Instagram</a>
+<body>
+  <div class="container">
+
+    <!-- PROFILE -->
+    <div class="profile">
+      <div class="avatar"></div>
+      <div>
+        <div class="username">Your Name</div>
+        <div class="bio">Bio goes here — gaming, coding, music, etc.</div>
+      </div>
+    </div>
+
+    <!-- CONTENT GRID -->
+    <div class="grid">
+
+      <!-- MUSIC PLAYER -->
+      <div class="card">
+        <h3>Music Player</h3>
+        <audio controls>
+          <source src="music.mp3" type="audio/mpeg">
+          Your browser does not support audio.
+        </audio>
+        <p style="opacity:0.6; font-size:12px;">Put your music.mp3 in the same folder</p>
+      </div>
+
+      <!-- DISCORD STATUS (Widget) -->
+      <div class="card">
+        <h3>Discord</h3>
+        <iframe
+          src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark"
+          height="200"
+          allowtransparency="true"
+          frameborder="0">
+        </iframe>
+      </div>
+
+      <!-- SPOTIFY EMBED -->
+      <div class="card">
+        <h3>Spotify</h3>
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT"
+          height="152"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+      </div>
+
+      <!-- LINKS -->
+      <div class="card">
+        <h3>Links</h3>
+        <p><a href="#" style="color:#7aa2ff;">Discord</a></p>
+        <p><a href="#" style="color:#7aa2ff;">YouTube</a></p>
+        <p><a href="#" style="color:#7aa2ff;">GitHub</a></p>
+      </div>
+
+    </div>
   </div>
 </body>
 </html>
