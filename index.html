@@ -43,7 +43,7 @@ body {
     animation: greenGlow 2.5s ease-in-out infinite alternate;
 }
 
-/* rotating aura */
+/* aura */
 .profile-card::before {
     content: "";
     position: absolute;
@@ -79,23 +79,9 @@ body {
     position: relative;
     width: 110px;
     height: 110px;
-
-    /* AVATAR DECORATION (kept, but modern neon style) */
-    border-radius: 50%;
-    padding: 4px;
-
-    background: linear-gradient(135deg,
-        rgba(57,255,20,0.8),
-        rgba(0,0,0,0),
-        rgba(57,255,20,0.4)
-    );
-
-    box-shadow:
-        0 0 12px rgba(57,255,20,0.25),
-        0 0 25px rgba(57,255,20,0.15);
 }
 
-/* avatar image */
+/* main avatar */
 .avatar {
     width: 100%;
     height: 100%;
@@ -104,7 +90,19 @@ body {
     display: block;
 }
 
-/* gray status dot (no glow) */
+/* avatar decoration (GIF overlay) */
+.avatar-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140%;
+    height: 140%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* status dot (no glow) */
 .status-dot {
     position: absolute;
     bottom: 4px;
@@ -130,7 +128,6 @@ body {
     font-size: 14px;
     color: #aaa;
     text-decoration: none;
-    transition: 0.2s ease;
 }
 
 .discord-link:hover {
@@ -165,8 +162,20 @@ body {
     <div class="identity-section">
 
         <div class="avatar-container">
-            <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg" class="avatar" alt="Avatar">
+
+            <!-- your avatar -->
+            <img src="https://i.im.ge/QMiaj9Y/1000024403.jpg"
+                 class="avatar"
+                 alt="avatar">
+
+            <!-- decoration overlay -->
+            <img src="https://i.im.ge/QMi7zAp/discord_fake_avatar_decorations_1780347050541.gif"
+                 class="avatar-decoration"
+                 alt="decoration">
+
+            <!-- status dot -->
             <div class="status-dot"></div>
+
         </div>
 
         <div class="display-name">slowspan</div>
