@@ -1,141 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Profile Hub</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>slowspan hub</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f13;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
 
-    .container {
-      width: 90%;
-      max-width: 900px;
-      background: #1a1a22;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: radial-gradient(circle at top, #141428, #07070d);
+  color: white;
+  overflow-x: hidden;
+}
 
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+/* glow background */
+.glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  filter: blur(140px);
+  opacity: 0.25;
+  animation: float 8s infinite alternate;
+}
 
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: gray;
-    }
+.glow:nth-child(1) { background: #7f5af0; top: -100px; left: -100px; }
+.glow:nth-child(2) { background: #00d4ff; top: 200px; right: -120px; }
 
-    .username {
-      font-size: 24px;
-      font-weight: bold;
-    }
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(60px); }
+}
 
-    .bio {
-      opacity: 0.7;
-      font-size: 14px;
-    }
+.container {
+  position: relative;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-top: 20px;
-    }
+/* glass card */
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
 
-    .card {
-      background: #22222c;
-      padding: 15px;
-      border-radius: 12px;
-    }
+/* profile */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-    audio {
-      width: 100%;
-      margin-top: 10px;
-    }
+.avatar {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 2px solid #7f5af0;
+  object-fit: cover;
+}
 
-    iframe {
-      width: 100%;
-      border-radius: 12px;
-    }
+.name {
+  font-size: 24px;
+  font-weight: 700;
+}
 
-    @media (max-width: 700px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.bio {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.section {
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+a {
+  color: #a78bfa;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* responsive */
+@media(max-width:800px){
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
+
+<div class="glow"></div>
+<div class="glow"></div>
+
+<div class="container">
+  <div class="card">
 
     <!-- PROFILE -->
     <div class="profile">
-      <div class="avatar"></div>
+      <img class="avatar" src="avatar.png" />
       <div>
-        <div class="username">Your Name</div>
-        <div class="bio">Bio goes here — gaming, coding, music, etc.</div>
+        <div class="name">slowspan</div>
+        <div class="bio">Discord: slowspan • Vibing • Gaming • Coding</div>
       </div>
     </div>
 
-    <!-- CONTENT GRID -->
+    <!-- GRID -->
     <div class="grid">
 
-      <!-- MUSIC PLAYER -->
-      <div class="card">
+      <!-- MUSIC -->
+      <div class="section">
         <h3>Music Player</h3>
         <audio controls>
           <source src="music.mp3" type="audio/mpeg">
-          Your browser does not support audio.
         </audio>
-        <p style="opacity:0.6; font-size:12px;">Put your music.mp3 in the same folder</p>
+        <p style="opacity:0.5;font-size:11px;">Put music.mp3 in folder</p>
       </div>
 
-      <!-- DISCORD STATUS (Widget) -->
-      <div class="card">
+      <!-- DISCORD USER -->
+      <div class="section">
         <h3>Discord</h3>
+        <p><b>@slowspan</b></p>
+        <p>
+          <a href="https://discord.com/users/YOUR_USER_ID">
+            Add Me on Discord
+          </a>
+        </p>
+      </div>
+
+      <!-- DISCORD SERVER -->
+      <div class="section">
+        <h3>Discord Server</h3>
         <iframe
           src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark"
-          height="200"
-          allowtransparency="true"
+          width="100%"
+          height="180"
+          frameborder="0"
+          style="border-radius:10px;">
+        </iframe>
+      </div>
+
+      <!-- SPOTIFY -->
+      <div class="section">
+        <h3>Spotify</h3>
+        <iframe style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT"
+          width="100%" height="152"
           frameborder="0">
         </iframe>
       </div>
 
-      <!-- SPOTIFY EMBED -->
-      <div class="card">
-        <h3>Spotify</h3>
-        <iframe style="border-radius:12px"
-          src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT"
-          height="152"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
-      </div>
-
-      <!-- LINKS -->
-      <div class="card">
-        <h3>Links</h3>
-        <p><a href="#" style="color:#7aa2ff;">Discord</a></p>
-        <p><a href="#" style="color:#7aa2ff;">YouTube</a></p>
-        <p><a href="#" style="color:#7aa2ff;">GitHub</a></p>
-      </div>
-
     </div>
   </div>
+</div>
+
 </body>
 </html>
