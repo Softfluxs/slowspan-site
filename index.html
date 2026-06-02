@@ -5,64 +5,186 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>slowspan</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{
+*{
     margin:0;
-    height:100vh;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+/* BACKGROUND */
+.bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    filter:brightness(0.55) contrast(1.15) saturate(1.1);
+    transform:scale(1.05);
+}
+
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-2;
+}
+
+/* PAGE */
+body{
+    background:#000;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#000;
-    font-family:Arial;
+    overflow:hidden;
+    color:white;
 }
 
-/* socials row */
-.socials{
+/* PROFILE CARD */
+.profile{
+    width:420px;
+    background:rgba(15,15,15,.72);
+    backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:24px;
+    box-shadow:0 0 50px rgba(0,0,0,.65);
+    overflow:hidden;
+}
+
+/* AVATAR */
+.avatar-wrapper{
+    width:165px;
+    height:165px;
+    margin:25px auto 10px;
     display:flex;
-    gap:18px;
+    justify-content:center;
+    align-items:center;
 }
 
-/* ICON BASE */
-.icon svg{
-    width:40px;
-    height:40px;
-    fill:white;
-    opacity:0.85;
+.avatar{
+    width:165px;
+    height:165px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
+}
+
+/* CONTENT */
+.content{
+    text-align:center;
+    padding:10px 25px 35px;
+}
+
+h1{
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+/* USERNAME */
+.username{
+    display:inline-block;
+    font-size:16px;
+    color:#ff3b3b;
+    text-decoration:none;
+    margin-bottom:12px;
     transition:0.2s;
 }
 
+.username:hover{
+    transform:scale(1.05);
+    text-shadow:0 0 12px rgba(255,59,59,.8);
+}
+
+/* SOCIAL ICON ROW (PNG STYLE SVG) */
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:12px;
+}
+
+.icon svg{
+    width:42px;
+    height:42px;
+    display:block;
+    fill:white;
+    opacity:0.85;
+    transition:0.2s;
+    filter:drop-shadow(0 0 6px rgba(255,255,255,0.2));
+}
+
 .icon:hover svg{
-    transform:scale(1.25);
+    transform:scale(1.15);
     opacity:1;
-    filter:drop-shadow(0 0 10px white);
+    filter:drop-shadow(0 0 12px rgba(255,255,255,0.6));
 }
 </style>
 </head>
 
 <body>
 
-<div class="socials">
+<!-- BACKGROUND -->
+<img class="bg"
+src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 
-<!-- SPOTIFY (fixed stable SVG) -->
-<a class="icon" href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
-<svg viewBox="0 0 24 24">
-<path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-.9-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 3.9-.9 7.3-.5 10.1 1.1.3.2.4.6.3.9z"/>
-</svg>
-</a>
+<div class="overlay"></div>
 
-<!-- STEAM (rebuilt clean vector icon) -->
-<a class="icon" href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
-<svg viewBox="0 0 24 24">
-<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/>
-</svg>
-</a>
+<!-- PROFILE -->
+<div class="profile">
 
-<!-- PLAYSTATION (rebuilt stable vector icon) -->
-<a class="icon" href="https://profile.playstation.com/Slowspan" target="_blank">
-<svg viewBox="0 0 24 24">
-<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 2a8 8 0 110 16 8 8 0 010-16z"/>
-</svg>
-</a>
+    <!-- AVATAR -->
+    <div class="avatar-wrapper">
+        <img class="avatar"
+        src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif">
+    </div>
+
+    <div class="content">
+
+        <h1>slowspan</h1>
+
+        <a class="username"
+           href="https://discord.com/users/YOUR_ID_HERE"
+           target="_blank">
+            @slowspan.
+        </a>
+
+        <!-- SOCIALS -->
+        <div class="socials">
+
+            <!-- SPOTIFY -->
+            <a class="icon" href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-.9-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 3.9-.9 7.3-.5 10.1 1.1.3.2.4.6.3.9z"/>
+                </svg>
+            </a>
+
+            <!-- STEAM -->
+            <a class="icon" href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/>
+                </svg>
+            </a>
+
+            <!-- PLAYSTATION -->
+            <a class="icon" href="https://profile.playstation.com/Slowspan" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 2a8 8 0 110 16 8 8 0 010-16z"/>
+                </svg>
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 
