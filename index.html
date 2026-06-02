@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>slowspan</title>
 
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -50,7 +53,7 @@ body{
     color:white;
 }
 
-/* PROFILE CARD */
+/* PROFILE */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -105,7 +108,7 @@ h1{
     text-shadow:0 0 12px rgba(255,59,59,.8);
 }
 
-/* SOCIAL ICON ROW (PNG STYLE SVG) */
+/* ICON ROW */
 .socials{
     display:flex;
     justify-content:center;
@@ -113,21 +116,26 @@ h1{
     margin-top:12px;
 }
 
-.icon svg{
-    width:42px;
-    height:42px;
-    display:block;
-    fill:white;
+/* FONT AWESOME ICON STYLE */
+.socials a{
+    font-size:34px;
+    color:white;
     opacity:0.85;
     transition:0.2s;
     filter:drop-shadow(0 0 6px rgba(255,255,255,0.2));
 }
 
-.icon:hover svg{
-    transform:scale(1.15);
+/* HOVER EFFECT */
+.socials a:hover{
+    transform:scale(1.2);
     opacity:1;
     filter:drop-shadow(0 0 12px rgba(255,255,255,0.6));
 }
+
+/* optional brand colors on hover */
+.fa-steam:hover{ color:#66c0f4; }
+.fa-playstation:hover{ color:#0070d1; }
+.fa-spotify:hover{ color:#1db954; }
 </style>
 </head>
 
@@ -162,24 +170,18 @@ src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
         <div class="socials">
 
             <!-- SPOTIFY -->
-            <a class="icon" href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-.9-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 3.9-.9 7.3-.5 10.1 1.1.3.2.4.6.3.9z"/>
-                </svg>
+            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
+                <i class="fa-brands fa-spotify"></i>
             </a>
 
             <!-- STEAM -->
-            <a class="icon" href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14z"/>
-                </svg>
+            <a href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
+                <i class="fa-brands fa-steam"></i>
             </a>
 
             <!-- PLAYSTATION -->
-            <a class="icon" href="https://profile.playstation.com/Slowspan" target="_blank">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 2a8 8 0 110 16 8 8 0 010-16z"/>
-                </svg>
+            <a href="https://profile.playstation.com/Slowspan" target="_blank">
+                <i class="fa-brands fa-playstation"></i>
             </a>
 
         </div>
