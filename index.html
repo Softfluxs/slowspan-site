@@ -70,16 +70,15 @@ body{
     display:block;
 }
 
-/* AVATAR (FIXED - NO BORDER, NOT COVERED) */
+/* AVATAR (FULL FIX - NO COVERING) */
 .avatar-wrapper{
     width:165px;
     height:165px;
-    margin:-75px auto 10px;
+    margin:25px auto 10px; /* IMPORTANT: no negative margin */
     display:flex;
     justify-content:center;
     align-items:center;
     position:relative;
-    z-index:2;
 }
 
 .avatar{
@@ -90,6 +89,8 @@ body{
     border:none;
     background:transparent;
     box-shadow:0 0 18px rgba(255,255,255,0.18);
+    position:relative;
+    z-index:2;
 }
 
 /* CONTENT */
