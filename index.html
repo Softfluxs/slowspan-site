@@ -15,34 +15,41 @@
     font-family:'Inter',sans-serif;
 }
 
+/* BACKGROUND GIF */
+.bg-gif{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    filter:brightness(0.45) contrast(1.1);
+}
+
+/* DARK OVERLAY (makes text readable) */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-2;
+}
+
+/* PAGE */
 body{
-    background:#080808;
+    background:#000;
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    overflow:hidden;
     color:white;
+    overflow:hidden;
 }
 
-/* glow background */
-body::before{
-    content:'';
-    position:absolute;
-    width:700px;
-    height:700px;
-    background:rgba(0,255,100,.12);
-    filter:blur(180px);
-    border-radius:50%;
-    animation:pulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes pulse{
-    from{transform:scale(1);}
-    to{transform:scale(1.15);}
-}
-
-/* profile card */
+/* PROFILE CARD */
 .profile{
     width:420px;
     background:rgba(15,15,15,.85);
@@ -51,18 +58,18 @@ body::before{
     border-radius:24px;
     overflow:visible;
     box-shadow:
-        0 0 40px rgba(0,0,0,.5),
+        0 0 40px rgba(0,0,0,.6),
         inset 0 0 20px rgba(255,255,255,.02);
 }
 
-/* banner */
+/* BANNER */
 .banner{
     height:140px;
-    background:linear-gradient(135deg,#181818,#101010,#080808);
+    background:rgba(255,255,255,0.03);
     border-radius:24px 24px 0 0;
 }
 
-/* avatar */
+/* AVATAR */
 .avatar-wrapper{
     position:relative;
     width:180px;
@@ -81,7 +88,7 @@ body::before{
     user-select:none;
 }
 
-/* content */
+/* CONTENT */
 .content{
     text-align:center;
     padding:0 30px 30px;
@@ -93,7 +100,7 @@ h1{
     margin-bottom:6px;
 }
 
-/* username (red clickable @) */
+/* RED CLICKABLE @USERNAME */
 .username{
     display:inline-block;
     margin-bottom:15px;
@@ -104,7 +111,7 @@ h1{
 }
 
 .username:hover{
-    text-shadow:0 0 10px rgba(255,43,43,.7);
+    text-shadow:0 0 10px rgba(255,43,43,.8);
 }
 
 .bio{
@@ -117,22 +124,29 @@ h1{
 
 <body>
 
+<!-- BACKGROUND GIF -->
+<img class="bg-gif"
+src="https://i.im.ge/QMiP3C8/9f5acaae03db8cd6b3fc0f608c07ae0b_1.gif"
+alt="background">
+
+<div class="overlay"></div>
+
 <div class="profile">
 
     <div class="banner"></div>
 
     <div class="avatar-wrapper">
+
         <img class="avatar"
         src="https://i.im.ge/QMiP57x/discord_fake_avatar_decorations_1780377375443.gif"
         alt="avatar">
+
     </div>
 
     <div class="content">
 
-        <!-- display name -->
         <h1>slowspan</h1>
 
-        <!-- clickable red @username -->
         <a class="username"
            href="https://discord.com/users/YOUR_ID_HERE"
            target="_blank">
