@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>slowspan.</title>
+<title>slowpsan</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -25,6 +25,7 @@ body{
     color:white;
 }
 
+/* glow */
 body::before{
     content:'';
     position:absolute;
@@ -41,6 +42,7 @@ body::before{
     to{transform:scale(1.15);}
 }
 
+/* card */
 .profile{
     width:420px;
     background:rgba(15,15,15,.85);
@@ -53,17 +55,14 @@ body::before{
         inset 0 0 20px rgba(255,255,255,.02);
 }
 
+/* banner */
 .banner{
     height:140px;
-    background:linear-gradient(
-        135deg,
-        #181818,
-        #101010,
-        #080808
-    );
+    background:linear-gradient(135deg,#181818,#101010,#080808);
     border-radius:24px 24px 0 0;
 }
 
+/* avatar */
 .avatar-wrapper{
     position:relative;
     width:180px;
@@ -82,6 +81,7 @@ body::before{
     user-select:none;
 }
 
+/* red dot */
 .status{
     position:absolute;
     right:22px;
@@ -94,6 +94,7 @@ body::before{
     box-shadow:0 0 10px rgba(255,43,43,.9);
 }
 
+/* content */
 .content{
     text-align:center;
     padding:0 30px 30px;
@@ -108,39 +109,32 @@ h1{
 .tag{
     color:#ff2b2b;
     font-size:13px;
+    margin-bottom:10px;
+}
+
+/* clickable discord tag */
+.discord{
+    display:inline-block;
     margin-bottom:15px;
+    color:#00ff66;
+    font-size:13px;
+    text-decoration:none;
+    transition:.2s;
+}
+
+.discord:hover{
+    color:#00ff66;
+    text-shadow:0 0 10px rgba(0,255,102,.7);
 }
 
 .bio{
     color:#b5b5b5;
     font-size:14px;
     line-height:1.6;
-    margin-bottom:25px;
-}
-
-.links{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.links a{
-    text-decoration:none;
-    color:white;
-    background:#111;
-    border:1px solid #1d1d1d;
-    padding:14px;
-    border-radius:12px;
-    transition:.25s;
-}
-
-.links a:hover{
-    transform:translateY(-3px);
-    background:#151515;
-    border-color:#333;
 }
 </style>
 </head>
+
 <body>
 
 <div class="profile">
@@ -149,10 +143,9 @@ h1{
 
     <div class="avatar-wrapper">
 
-        <img
-            class="avatar"
-            src="https://i.im.ge/QMiP57x/discord_fake_avatar_decorations_1780377375443.gif"
-            alt="Avatar">
+        <img class="avatar"
+        src="https://i.im.ge/QMiP57x/discord_fake_avatar_decorations_1780377375443.gif"
+        alt="avatar">
 
         <div class="status"></div>
 
@@ -160,17 +153,18 @@ h1{
 
     <div class="content">
 
-        <h1>slowspan.</h1>
+        <h1>slowpsan</h1>
 
-        <div class="tag">● OFFLINE</div>
+        <div class="tag">● slowspand.</div>
+
+        <!-- clickable discord username -->
+        <a class="discord" href="https://discord.com/users/YOUR_ID_HERE" target="_blank">
+            @slowspan.
+        </a>
 
         <p class="bio">
             welcome to my profile.
         </p>
-
-        <div class="links">
-            <a href="#">Discord</a>
-        </div>
 
     </div>
 
