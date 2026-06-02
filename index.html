@@ -6,7 +6,6 @@
 <title>slowspan</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -71,14 +70,16 @@ body{
     display:block;
 }
 
-/* AVATAR */
+/* AVATAR (FIXED - NO BORDER, NOT COVERED) */
 .avatar-wrapper{
     width:165px;
     height:165px;
-    margin:-75px auto 10px; /* pulls avatar into banner */
+    margin:-75px auto 10px;
     display:flex;
     justify-content:center;
     align-items:center;
+    position:relative;
+    z-index:2;
 }
 
 .avatar{
@@ -86,9 +87,9 @@ body{
     height:165px;
     object-fit:contain;
     border-radius:50%;
-    border:4px solid rgba(0,0,0,0.6);
-    filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
-    background:#111;
+    border:none;
+    background:transparent;
+    box-shadow:0 0 18px rgba(255,255,255,0.18);
 }
 
 /* CONTENT */
@@ -118,7 +119,7 @@ h1{
     text-shadow:0 0 12px rgba(255,59,59,.8);
 }
 
-/* ICON ROW */
+/* ICONS */
 .socials{
     display:flex;
     justify-content:center;
@@ -126,7 +127,6 @@ h1{
     margin-top:12px;
 }
 
-/* FONT AWESOME ICONS */
 .socials a{
     font-size:34px;
     color:white;
@@ -179,7 +179,7 @@ src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
             @slowspan.
         </a>
 
-        <!-- SOCIALS -->
+        <!-- ICONS -->
         <div class="socials">
 
             <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
