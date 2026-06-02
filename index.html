@@ -19,8 +19,7 @@
 /* BACKGROUND */
 .bg{
     position:fixed;
-    top:0;
-    left:0;
+    inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
@@ -32,10 +31,7 @@
 /* OVERLAY */
 .overlay{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     background:rgba(0,0,0,0.55);
     z-index:-2;
 }
@@ -59,24 +55,17 @@ body{
     justify-content:center;
     align-items:center;
     z-index:999;
-
     background:rgba(255,255,255,0.05);
     backdrop-filter: blur(18px);
 }
 
-/* S */
 .enter-symbol{
     font-size:140px;
     font-weight:800;
-    letter-spacing:8px;
     color:white;
     cursor:pointer;
-
-    text-shadow:
-        0 0 10px rgba(255,255,255,0.2),
-        0 0 25px rgba(255,255,255,0.15);
-
     animation:pulseGlow 2.5s infinite ease-in-out;
+    text-shadow:0 0 25px rgba(255,255,255,0.2);
 }
 
 @keyframes pulseGlow{
@@ -90,9 +79,8 @@ body{
     width:420px;
     background:rgba(15,15,15,.72);
     backdrop-filter:blur(22px);
-    border:1px solid rgba(255,255,255,.06);
     border-radius:24px;
-
+    border:1px solid rgba(255,255,255,.06);
     overflow:hidden;
 
     opacity:0;
@@ -107,22 +95,16 @@ body{
     transform:translateY(0);
 }
 
-/* BORDER GLOW */
+/* GREY GLOW BORDER */
 @keyframes borderGlow{
     0%{
-        box-shadow:
-        0 0 10px rgba(120,120,120,0.05),
-        0 0 20px rgba(120,120,120,0.08);
+        box-shadow:0 0 10px rgba(120,120,120,0.05),0 0 20px rgba(120,120,120,0.08);
     }
     50%{
-        box-shadow:
-        0 0 20px rgba(170,170,170,0.12),
-        0 0 45px rgba(140,140,140,0.1);
+        box-shadow:0 0 25px rgba(170,170,170,0.12),0 0 45px rgba(140,140,140,0.1);
     }
     100%{
-        box-shadow:
-        0 0 10px rgba(120,120,120,0.05),
-        0 0 20px rgba(120,120,120,0.08);
+        box-shadow:0 0 10px rgba(120,120,120,0.05),0 0 20px rgba(120,120,120,0.08);
     }
 }
 
@@ -139,10 +121,9 @@ body{
     width:85%;
     margin:12px auto;
     padding:10px 12px;
-
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
@@ -159,12 +140,10 @@ body{
     opacity:0.7;
 }
 
-/* BUTTON */
 .music-toggle{
     width:34px;
     height:34px;
     border-radius:10px;
-
     border:1px solid rgba(255,255,255,0.2);
     background:rgba(0,0,0,0.25);
     color:white;
@@ -182,27 +161,33 @@ body{
 .avatar{
     width:165px;
     height:165px;
-    object-fit:contain;
+    object-fit:cover;
+    border-radius:50%;
 }
 
-/* DISCORD DOT (OVERLAPPING) */
+/* DISCORD DOT (OVERLAPPING EDGE) */
 .status-dot{
     position:absolute;
-    bottom:2px;
-    right:2px;
+    bottom:10px;
+    right:10px;
 
-    width:16px;
-    height:16px;
+    width:18px;
+    height:18px;
     border-radius:50%;
 
     background:#747f8d;
-
     border:3px solid rgba(15,15,15,0.95);
 
-    transform:translate(30%, 30%);
+    transform:translate(35%,35%);
 }
 
-/* TITLE ANIMATION */
+/* CONTENT */
+.content{
+    text-align:center;
+    padding:10px 25px 35px;
+}
+
+/* ANIMATED TITLE */
 .animated-title{
     font-size:30px;
     font-weight:700;
@@ -224,17 +209,6 @@ body{
     100%{opacity:0; transform:translateY(-10px);}
 }
 
-/* CONTENT */
-.content{
-    text-align:center;
-    padding:10px 25px 35px;
-}
-
-.username{
-    color:#ff3b3b;
-    text-decoration:none;
-}
-
 /* SOCIALS */
 .socials{
     display:flex;
@@ -253,14 +227,16 @@ body{
 
 <body>
 
+<!-- BACKGROUND -->
 <img class="bg" src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 <div class="overlay"></div>
 
+<!-- AUDIO -->
 <audio id="bg-audio" loop>
   <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
 </audio>
 
-<!-- ENTER -->
+<!-- ENTER SCREEN -->
 <div class="enter-screen" onclick="enterSite()">
     <div class="enter-symbol">S</div>
 </div>
@@ -272,6 +248,7 @@ body{
         <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
     </div>
 
+    <!-- MUSIC -->
     <div class="music-card">
         <div class="music-info">
             <div class="title">See You Again</div>
@@ -281,13 +258,15 @@ body{
         <button class="music-toggle" id="btn" onclick="toggleMusic()">▶</button>
     </div>
 
+    <!-- AVATAR -->
     <div class="avatar-wrapper">
-        <img class="avatar" src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif">
+        <img class="avatar"
+        src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
+
         <div class="status-dot"></div>
     </div>
 
     <div class="content">
-
         <h1 class="animated-title"></h1>
 
         <a class="username">@slowspan.</a>
@@ -297,8 +276,8 @@ body{
             <a href="#"><i class="fa-brands fa-steam"></i></a>
             <a href="#"><i class="fa-brands fa-playstation"></i></a>
         </div>
-
     </div>
+
 </div>
 
 <script>
@@ -323,7 +302,7 @@ function toggleMusic(){
     }
 }
 
-/* animated title */
+/* TITLE ANIMATION */
 const name = "slowspan";
 const title = document.querySelector(".animated-title");
 
