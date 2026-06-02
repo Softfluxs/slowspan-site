@@ -70,7 +70,7 @@ body{
     display:block;
 }
 
-/* AVATAR (FULLY CLEAN - NO CIRCLE, NO BORDER, NO GLOW) */
+/* AVATAR WRAPPER */
 .avatar-wrapper{
     width:165px;
     height:165px;
@@ -78,16 +78,58 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    position:relative;
 }
 
+/* AVATAR */
 .avatar{
     width:165px;
     height:165px;
     object-fit:contain;
-    border-radius:0;   /* REMOVED CIRCLE */
-    border:none;       /* NO BORDER */
-    box-shadow:none;   /* NO GLOW */
+    border-radius:0;
+    border:none;
+    box-shadow:none;
     background:transparent;
+}
+
+/* DISCORD OFFLINE DOT */
+.status-dot{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#747f8d;
+    border:3px solid #111;
+}
+
+/* CLICK ENTER SCREEN */
+.enter-screen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.92);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    cursor:pointer;
+}
+
+.enter-box{
+    padding:14px 28px;
+    border:1px solid rgba(255,255,255,0.2);
+    font-size:18px;
+    color:white;
+    transition:0.2s;
+}
+
+.enter-box:hover{
+    transform:scale(1.05);
+    border-color:white;
 }
 
 /* CONTENT */
@@ -130,7 +172,6 @@ h1{
     color:white;
     opacity:0.85;
     transition:0.2s;
-    filter:none;
 }
 
 .socials a:hover{
@@ -147,23 +188,30 @@ h1{
 <body>
 
 <!-- BACKGROUND -->
-<img class="bg"
-src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
-
+<img class="bg" src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 <div class="overlay"></div>
+
+<!-- AUDIO -->
+<audio id="bg-audio" src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3"></audio>
+
+<!-- ENTER SCREEN -->
+<div class="enter-screen" onclick="startSite()">
+    <div class="enter-box">click to enter</div>
+</div>
 
 <!-- PROFILE -->
 <div class="profile">
 
-    <!-- BANNER -->
     <div class="banner">
         <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
     </div>
 
-    <!-- AVATAR -->
     <div class="avatar-wrapper">
         <img class="avatar"
         src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif">
+
+        <!-- OFFLINE DOT -->
+        <div class="status-dot"></div>
     </div>
 
     <div class="content">
@@ -176,7 +224,6 @@ src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
             @slowspan.
         </a>
 
-        <!-- ICONS -->
         <div class="socials">
 
             <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
@@ -196,6 +243,16 @@ src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
     </div>
 
 </div>
+
+<script>
+function startSite(){
+    const audio = document.getElementById("bg-audio");
+    audio.volume = 0.5;
+    audio.play();
+
+    document.querySelector(".enter-screen").style.display = "none";
+}
+</script>
 
 </body>
 </html>
