@@ -51,33 +51,40 @@ body{
     color:white;
 }
 
-/* ENTER SCREEN (S SYMBOL) */
+/* GLASS ENTER SCREEN */
 .enter-screen{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.95);
+    inset:0;
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
     z-index:999;
+
+    background:rgba(255,255,255,0.05);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.enter-box{
+    padding:20px 34px;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(0,0,0,0.25);
     cursor:pointer;
+    transition:0.25s;
+    text-align:center;
 }
 
-.enter-symbol{
-    font-size:80px;
-    font-weight:700;
-    letter-spacing:10px;
-    color:white;
-    transition:0.3s;
+.enter-box:hover{
+    transform:scale(1.05);
+    border-color:white;
+}
+
+/* SONG TEXT */
+.song-text{
+    margin-bottom:15px;
+    font-size:14px;
     opacity:0.85;
-}
-
-.enter-symbol:hover{
-    transform:scale(1.2);
-    opacity:1;
 }
 
 /* PROFILE */
@@ -110,25 +117,33 @@ body{
 
 /* MUSIC PLAYER */
 .music-player{
-    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
     padding:10px;
-    font-size:14px;
-    opacity:0.9;
+    font-size:13px;
 }
 
 .music-btn{
-    cursor:pointer;
-    margin-top:5px;
-    padding:6px 12px;
-    border:1px solid rgba(255,255,255,0.2);
-    background:transparent;
+    padding:7px 14px;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.05);
     color:white;
-    transition:0.2s;
+    cursor:pointer;
+    transition:0.25s;
+    border-radius:8px;
 }
 
 .music-btn:hover{
     transform:scale(1.05);
     border-color:white;
+}
+
+.music-btn.playing{
+    background:rgba(255,255,255,0.18);
+    border-color:#1db954;
+    box-shadow:0 0 12px rgba(29,185,84,0.4);
 }
 
 /* AVATAR */
@@ -215,7 +230,13 @@ h1{
 
 <!-- ENTER SCREEN -->
 <div class="enter-screen" onclick="enterSite()">
-    <div class="enter-symbol">S</div>
+    <div class="song-text">
+        Now Playing: Unknown Track
+    </div>
+
+    <div class="enter-box">
+        click to enter
+    </div>
 </div>
 
 <!-- PROFILE -->
@@ -227,8 +248,8 @@ h1{
 
     <!-- MUSIC PLAYER -->
     <div class="music-player">
-        <div>Now Playing</div>
-        <button class="music-btn" onclick="toggleMusic()">Play / Pause</button>
+        <div>Now Playing: Unknown Track</div>
+        <button id="musicBtn" class="music-btn" onclick="toggleMusic()">Play</button>
     </div>
 
     <div class="avatar-wrapper">
@@ -267,6 +288,9 @@ h1{
 <script>
 const audio = document.getElementById("bg-audio");
 const profile = document.getElementById("profile");
+const btn = document.getElementById("musicBtn");
+
+let started = false;
 
 function enterSite(){
     document.querySelector(".enter-screen").style.display = "none";
@@ -274,17 +298,24 @@ function enterSite(){
     audio.volume = 0.5;
     audio.play();
 
-    // fade in everything
-    setTimeout(() => {
-        profile.classList.add("show");
-    }, 200);
+    profile.classList.add("show");
+    started = true;
+
+    btn.textContent = "Pause";
+    btn.classList.add("playing");
 }
 
 function toggleMusic(){
+    if(!started) return;
+
     if(audio.paused){
         audio.play();
+        btn.textContent = "Pause";
+        btn.classList.add("playing");
     } else {
         audio.pause();
+        btn.textContent = "Play";
+        btn.classList.remove("playing");
     }
 }
 </script>
