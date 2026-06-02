@@ -15,7 +15,9 @@
     font-family:'Inter',sans-serif;
 }
 
-/* BACKGROUND */
+/* =========================
+   BACKGROUND
+========================= */
 .bg{
     position:fixed;
     top:0;
@@ -28,7 +30,7 @@
     transform:scale(1.05);
 }
 
-/* OVERLAY */
+/* DARK OVERLAY */
 .overlay{
     position:fixed;
     top:0;
@@ -39,7 +41,9 @@
     z-index:-2;
 }
 
-/* PAGE */
+/* =========================
+   PAGE
+========================= */
 body{
     background:#000;
     min-height:100vh;
@@ -50,7 +54,9 @@ body{
     color:white;
 }
 
-/* PROFILE CARD */
+/* =========================
+   PROFILE CARD
+========================= */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -61,7 +67,9 @@ body{
     overflow:hidden;
 }
 
-/* AVATAR */
+/* =========================
+   AVATAR
+========================= */
 .avatar-wrapper{
     width:165px;
     height:165px;
@@ -78,7 +86,9 @@ body{
     filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
 .content{
     text-align:center;
     padding:10px 25px 35px;
@@ -105,7 +115,9 @@ h1{
     transform:scale(1.05);
 }
 
-/* SOCIALS */
+/* =========================
+   SOCIAL ICONS
+========================= */
 .socials{
     display:flex;
     justify-content:center;
@@ -114,8 +126,9 @@ h1{
 }
 
 .socials a img{
-    width:30px;
-    height:30px;
+    width:34px;
+    height:34px;
+    object-fit:contain;
     opacity:0.85;
     transition:0.2s;
     filter:drop-shadow(0 0 6px rgba(255,255,255,0.15));
@@ -124,6 +137,7 @@ h1{
 .socials a img:hover{
     opacity:1;
     transform:scale(1.2);
+    filter:drop-shadow(0 0 10px rgba(255,255,255,0.35));
 }
 </style>
 </head>
@@ -151,7 +165,6 @@ alt="background">
 
         <h1>slowspan</h1>
 
-        <!-- CLICKABLE USERNAME -->
         <a class="username"
            href="https://discord.com/users/YOUR_ID_HERE"
            target="_blank">
@@ -162,15 +175,15 @@ alt="background">
         <div class="socials">
 
             <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4?si=4e6f03cf28344dae" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png">
+                <img src="spotify.png" alt="spotify">
             </a>
 
             <a href="https://steamcommunity.com/profiles/76561198728733895/" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670153.png">
+                <img src="aroma.png" alt="steam">
             </a>
 
             <a href="https://profile.playstation.com/Slowspan" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/871/871392.png">
+                <img src="playstation.png" alt="psn">
             </a>
 
         </div>
