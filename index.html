@@ -156,29 +156,26 @@ body{
     height:165px;
     margin:10px auto;
     position:relative;
-
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
-/* CLEAN AVATAR (NO RING / NO BORDER) */
+/* FIXED: NO CROPPING (FULL IMAGE VISIBLE) */
 .avatar{
     width:165px;
     height:165px;
-    object-fit:cover;
-    border-radius:50%;
 
-    border:0 !important;
-    box-shadow:none !important;
-    outline:none !important;
-    background:transparent;
+    object-fit:contain; /* 🔥 FIX */
+
+    border-radius:50%;
+    border:0;
+    box-shadow:none;
 }
 
-/* DISCORD DOT (TIGHT OVERLAP) */
+/* DISCORD DOT (OVERLAPPING EDGE) */
 .status-dot{
     position:absolute;
-
     width:18px;
     height:18px;
     border-radius:50%;
@@ -189,12 +186,12 @@ body{
     bottom:4px;
     right:4px;
 
-    transform:translate(60%, 60%);
+    transform:translate(60%,60%);
 
     box-shadow:0 0 6px rgba(0,0,0,0.35);
 }
 
-/* TITLE ANIMATION */
+/* TITLE */
 .animated-title{
     font-size:30px;
     font-weight:700;
