@@ -95,7 +95,7 @@ body{
     transform:translateY(0);
 }
 
-/* GREY GLOW BORDER */
+/* GREY BORDER GLOW */
 @keyframes borderGlow{
     0%{
         box-shadow:0 0 10px rgba(120,120,120,0.05),0 0 20px rgba(120,120,120,0.08);
@@ -156,21 +156,29 @@ body{
     height:165px;
     margin:10px auto;
     position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* CLEAN AVATAR (NO BORDER / NO FRAME) */
+/* CLEAN AVATAR (NO RING / NO BORDER) */
 .avatar{
     width:165px;
     height:165px;
     object-fit:cover;
     border-radius:50%;
-    border:none;
-    box-shadow:none;
+
+    border:0 !important;
+    box-shadow:none !important;
+    outline:none !important;
+    background:transparent;
 }
 
-/* DISCORD DOT (EDGE OVERLAP) */
+/* DISCORD DOT (TIGHT OVERLAP) */
 .status-dot{
     position:absolute;
+
     width:18px;
     height:18px;
     border-radius:50%;
@@ -178,15 +186,15 @@ body{
     background:#747f8d;
     border:3px solid rgba(15,15,15,0.95);
 
-    bottom:8px;
-    right:8px;
+    bottom:4px;
+    right:4px;
 
-    transform:translate(50%,50%);
+    transform:translate(60%, 60%);
 
-    box-shadow:0 0 8px rgba(0,0,0,0.35);
+    box-shadow:0 0 6px rgba(0,0,0,0.35);
 }
 
-/* TITLE */
+/* TITLE ANIMATION */
 .animated-title{
     font-size:30px;
     font-weight:700;
@@ -246,7 +254,7 @@ body{
   <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
 </audio>
 
-<!-- ENTER -->
+<!-- ENTER SCREEN -->
 <div class="enter-screen" onclick="enterSite()">
     <div class="enter-symbol">S</div>
 </div>
@@ -258,6 +266,7 @@ body{
         <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
     </div>
 
+    <!-- MUSIC -->
     <div class="music-card">
         <div class="music-info">
             <div class="title">See You Again</div>
@@ -275,6 +284,7 @@ body{
         <div class="status-dot"></div>
     </div>
 
+    <!-- CONTENT -->
     <div class="content">
         <h1 class="animated-title"></h1>
 
