@@ -15,9 +15,7 @@
     font-family:'Inter',sans-serif;
 }
 
-/* =========================
-   GIF BACKGROUND
-========================= */
+/* BACKGROUND GIF */
 .bg-gif{
     position:fixed;
     top:0;
@@ -28,7 +26,7 @@
     z-index:-3;
 }
 
-/* dark overlay for readability */
+/* DARK OVERLAY */
 .overlay{
     position:fixed;
     top:0;
@@ -39,9 +37,7 @@
     z-index:-2;
 }
 
-/* =========================
-   PAGE
-========================= */
+/* PAGE */
 body{
     background:#000;
     min-height:100vh;
@@ -52,9 +48,7 @@ body{
     color:white;
 }
 
-/* =========================
-   PROFILE CARD
-========================= */
+/* PROFILE CARD */
 .profile{
     width:420px;
     background:rgba(15,15,15,.75);
@@ -65,13 +59,13 @@ body{
     overflow:hidden;
 }
 
-/* banner */
+/* BANNER */
 .banner{
-    height:130px;
-    background:rgba(255,255,255,0.03);
+    height:140px;
+    background:url("https://i.im.ge/QMitxRT/a8d51b3626ab1832e180770eb4de9ec2.gif") center/cover no-repeat;
 }
 
-/* avatar */
+/* AVATAR */
 .avatar-wrapper{
     width:160px;
     height:160px;
@@ -88,7 +82,7 @@ body{
     filter:drop-shadow(0 0 15px rgba(255,255,255,.15));
 }
 
-/* content */
+/* CONTENT */
 .content{
     text-align:center;
     padding:10px 25px 30px;
@@ -100,7 +94,7 @@ h1{
     margin-bottom:6px;
 }
 
-/* username */
+/* USERNAME */
 .username{
     display:inline-block;
     font-size:16px;
@@ -114,7 +108,7 @@ h1{
     text-shadow:0 0 10px rgba(255,43,43,.8);
 }
 
-/* bio */
+/* BIO */
 .bio{
     font-size:14px;
     color:#b5b5b5;
@@ -125,7 +119,7 @@ h1{
 
 <body>
 
-<!-- GIF BACKGROUND -->
+<!-- BACKGROUND GIF -->
 <img class="bg-gif"
 src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif"
 alt="background">
@@ -135,8 +129,10 @@ alt="background">
 <!-- PROFILE -->
 <div class="profile">
 
+    <!-- BANNER GIF -->
     <div class="banner"></div>
 
+    <!-- AVATAR -->
     <div class="avatar-wrapper">
         <img class="avatar"
         src="https://i.im.ge/QMiP57x/discord_fake_avatar_decorations_1780377375443.gif"
