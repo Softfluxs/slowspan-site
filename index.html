@@ -51,7 +51,36 @@ body{
     color:white;
 }
 
-/* PROFILE CARD */
+/* ENTER SCREEN (S SYMBOL) */
+.enter-screen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    cursor:pointer;
+}
+
+.enter-symbol{
+    font-size:80px;
+    font-weight:700;
+    letter-spacing:10px;
+    color:white;
+    transition:0.3s;
+    opacity:0.85;
+}
+
+.enter-symbol:hover{
+    transform:scale(1.2);
+    opacity:1;
+}
+
+/* PROFILE */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -60,6 +89,15 @@ body{
     border-radius:24px;
     box-shadow:0 0 50px rgba(0,0,0,.65);
     overflow:hidden;
+
+    opacity:0;
+    transform:translateY(20px);
+    transition:1s ease;
+}
+
+.profile.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 /* BANNER */
@@ -70,29 +108,47 @@ body{
     display:block;
 }
 
-/* AVATAR WRAPPER */
+/* MUSIC PLAYER */
+.music-player{
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+.music-btn{
+    cursor:pointer;
+    margin-top:5px;
+    padding:6px 12px;
+    border:1px solid rgba(255,255,255,0.2);
+    background:transparent;
+    color:white;
+    transition:0.2s;
+}
+
+.music-btn:hover{
+    transform:scale(1.05);
+    border-color:white;
+}
+
+/* AVATAR */
 .avatar-wrapper{
     width:165px;
     height:165px;
-    margin:25px auto 10px;
+    margin:10px auto;
     display:flex;
     justify-content:center;
     align-items:center;
     position:relative;
 }
 
-/* AVATAR */
 .avatar{
     width:165px;
     height:165px;
     object-fit:contain;
-    border-radius:0;
-    border:none;
-    box-shadow:none;
-    background:transparent;
 }
 
-/* DISCORD OFFLINE DOT */
+/* DISCORD DOT */
 .status-dot{
     position:absolute;
     bottom:10px;
@@ -102,34 +158,6 @@ body{
     border-radius:50%;
     background:#747f8d;
     border:3px solid #111;
-}
-
-/* CLICK ENTER SCREEN */
-.enter-screen{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.92);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-    cursor:pointer;
-}
-
-.enter-box{
-    padding:14px 28px;
-    border:1px solid rgba(255,255,255,0.2);
-    font-size:18px;
-    color:white;
-    transition:0.2s;
-}
-
-.enter-box:hover{
-    transform:scale(1.05);
-    border-color:white;
 }
 
 /* CONTENT */
@@ -144,22 +172,15 @@ h1{
     margin-bottom:8px;
 }
 
-/* USERNAME */
 .username{
     display:inline-block;
     font-size:16px;
     color:#ff3b3b;
     text-decoration:none;
     margin-bottom:12px;
-    transition:0.2s;
 }
 
-.username:hover{
-    transform:scale(1.05);
-    text-shadow:0 0 12px rgba(255,59,59,.8);
-}
-
-/* ICONS */
+/* SOCIALS */
 .socials{
     display:flex;
     justify-content:center;
@@ -178,10 +199,6 @@ h1{
     transform:scale(1.2);
     opacity:1;
 }
-
-.fa-steam:hover{ color:#66c0f4; }
-.fa-playstation:hover{ color:#0070d1; }
-.fa-spotify:hover{ color:#1db954; }
 </style>
 </head>
 
@@ -192,25 +209,32 @@ h1{
 <div class="overlay"></div>
 
 <!-- AUDIO -->
-<audio id="bg-audio" src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3"></audio>
+<audio id="bg-audio" loop>
+  <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
+</audio>
 
 <!-- ENTER SCREEN -->
-<div class="enter-screen" onclick="startSite()">
-    <div class="enter-box">click to enter</div>
+<div class="enter-screen" onclick="enterSite()">
+    <div class="enter-symbol">S</div>
 </div>
 
 <!-- PROFILE -->
-<div class="profile">
+<div class="profile" id="profile">
 
     <div class="banner">
         <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
+    </div>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-player">
+        <div>Now Playing</div>
+        <button class="music-btn" onclick="toggleMusic()">Play / Pause</button>
     </div>
 
     <div class="avatar-wrapper">
         <img class="avatar"
         src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif">
 
-        <!-- OFFLINE DOT -->
         <div class="status-dot"></div>
     </div>
 
@@ -218,14 +242,11 @@ h1{
 
         <h1>slowspan</h1>
 
-        <a class="username"
-           href="https://discord.com/users/YOUR_ID_HERE"
-           target="_blank">
+        <a class="username" href="https://discord.com/users/YOUR_ID_HERE" target="_blank">
             @slowspan.
         </a>
 
         <div class="socials">
-
             <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
                 <i class="fa-brands fa-spotify"></i>
             </a>
@@ -237,7 +258,6 @@ h1{
             <a href="https://profile.playstation.com/Slowspan" target="_blank">
                 <i class="fa-brands fa-playstation"></i>
             </a>
-
         </div>
 
     </div>
@@ -245,12 +265,27 @@ h1{
 </div>
 
 <script>
-function startSite(){
-    const audio = document.getElementById("bg-audio");
+const audio = document.getElementById("bg-audio");
+const profile = document.getElementById("profile");
+
+function enterSite(){
+    document.querySelector(".enter-screen").style.display = "none";
+
     audio.volume = 0.5;
     audio.play();
 
-    document.querySelector(".enter-screen").style.display = "none";
+    // fade in everything
+    setTimeout(() => {
+        profile.classList.add("show");
+    }, 200);
+}
+
+function toggleMusic(){
+    if(audio.paused){
+        audio.play();
+    } else {
+        audio.pause();
+    }
 }
 </script>
 
