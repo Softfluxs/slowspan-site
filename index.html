@@ -47,7 +47,7 @@ body{
     color:white;
 }
 
-/* ENTER SCREEN */
+/* ENTER */
 .enter-screen{
     position:fixed;
     inset:0;
@@ -95,7 +95,7 @@ body{
     transform:translateY(0);
 }
 
-/* GREY BORDER GLOW */
+/* BORDER GLOW */
 @keyframes borderGlow{
     0%{
         box-shadow:0 0 10px rgba(120,120,120,0.05),0 0 20px rgba(120,120,120,0.08);
@@ -150,30 +150,41 @@ body{
     cursor:pointer;
 }
 
-/* AVATAR WRAPPER */
+/* AVATAR WRAPPER (CLEAN — NO RING EFFECT POSSIBLE) */
 .avatar-wrapper{
     width:165px;
     height:165px;
     margin:10px auto;
     position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+
+    display:block;
+    background:transparent !important;
 }
 
-/* FIXED: NO CROPPING (FULL IMAGE VISIBLE) */
+/* FIXED AVATAR (NO CROPPING, NO BORDER, NO ARTIFACT RING) */
 .avatar{
     width:165px;
     height:165px;
 
-    object-fit:contain; /* 🔥 FIX */
+    object-fit:contain;
+    display:block;
 
     border-radius:50%;
-    border:0;
-    box-shadow:none;
+
+    border:none !important;
+    outline:none !important;
+    box-shadow:none !important;
+    background:transparent !important;
 }
 
-/* DISCORD DOT (OVERLAPPING EDGE) */
+/* EXTRA SAFETY (kills fake ring from blending) */
+.avatar-wrapper::before,
+.avatar-wrapper::after{
+    content:"";
+    display:none;
+}
+
+/* DISCORD DOT */
 .status-dot{
     position:absolute;
     width:18px;
@@ -251,7 +262,7 @@ body{
   <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
 </audio>
 
-<!-- ENTER SCREEN -->
+<!-- ENTER -->
 <div class="enter-screen" onclick="enterSite()">
     <div class="enter-symbol">S</div>
 </div>
