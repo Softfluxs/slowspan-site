@@ -70,27 +70,24 @@ body{
     display:block;
 }
 
-/* AVATAR (FULL FIX - NO COVERING) */
+/* AVATAR (FULLY CLEAN - NO CIRCLE, NO BORDER, NO GLOW) */
 .avatar-wrapper{
     width:165px;
     height:165px;
-    margin:25px auto 10px; /* IMPORTANT: no negative margin */
+    margin:25px auto 10px;
     display:flex;
     justify-content:center;
     align-items:center;
-    position:relative;
 }
 
 .avatar{
     width:165px;
     height:165px;
     object-fit:contain;
-    border-radius:50%;
-    border:none;
+    border-radius:0;   /* REMOVED CIRCLE */
+    border:none;       /* NO BORDER */
+    box-shadow:none;   /* NO GLOW */
     background:transparent;
-    box-shadow:0 0 18px rgba(255,255,255,0.18);
-    position:relative;
-    z-index:2;
 }
 
 /* CONTENT */
@@ -133,13 +130,12 @@ h1{
     color:white;
     opacity:0.85;
     transition:0.2s;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,0.2));
+    filter:none;
 }
 
 .socials a:hover{
     transform:scale(1.2);
     opacity:1;
-    filter:drop-shadow(0 0 12px rgba(255,255,255,0.6));
 }
 
 .fa-steam:hover{ color:#66c0f4; }
