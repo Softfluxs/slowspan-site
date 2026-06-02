@@ -153,32 +153,25 @@ body{
     cursor:pointer;
 }
 
-/* AVATAR WRAPPER */
+/* AVATAR */
 .avatar-wrapper{
     width:165px;
     height:165px;
     margin:10px auto;
-    position:relative;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
-    background:transparent;
 }
 
-/* 🔥 FINAL FIX: NO CIRCLE, NO CROPPING, SHOW EVERYTHING */
 .avatar{
     width:165px;
     height:165px;
-
-    object-fit:contain;   /* shows full image */
+    object-fit:contain;
     display:block;
 
-    border-radius:0 !important;  /* ❌ removes ALL circle masking */
-    border:none !important;
-    box-shadow:none !important;
-    background:transparent;
+    border-radius:0;
+    border:none;
+    box-shadow:none;
 }
 
 /* TITLE */
@@ -226,6 +219,31 @@ body{
     font-size:34px;
     color:white;
     opacity:0.85;
+    transition:0.25s ease;
+    display:inline-block;
+    will-change: transform;
+}
+
+/* HOVER SCALE */
+.socials a:hover{
+    transform:scale(1.25);
+    opacity:1;
+}
+
+/* PLATFORM COLORS */
+.fa-spotify:hover{
+    color:#1DB954;
+    text-shadow:0 0 10px rgba(29,185,84,0.7);
+}
+
+.fa-steam:hover{
+    color:#00ADEE;
+    text-shadow:0 0 10px rgba(0,173,238,0.7);
+}
+
+.fa-playstation:hover{
+    color:#ffffff;
+    text-shadow:0 0 10px rgba(255,255,255,0.6);
 }
 </style>
 </head>
@@ -263,7 +281,7 @@ body{
         <button class="music-toggle" id="btn" onclick="toggleMusic()">▶</button>
     </div>
 
-    <!-- AVATAR (FULL, UNCROPPED, NO CIRCLE) -->
+    <!-- AVATAR -->
     <div class="avatar-wrapper">
         <img class="avatar"
         src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
@@ -276,9 +294,19 @@ body{
         <a class="username">@slowspan.</a>
 
         <div class="socials">
-            <a href="#"><i class="fa-brands fa-spotify"></i></a>
-            <a href="#"><i class="fa-brands fa-steam"></i></a>
-            <a href="#"><i class="fa-brands fa-playstation"></i></a>
+
+            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
+                <i class="fa-brands fa-spotify"></i>
+            </a>
+
+            <a href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
+                <i class="fa-brands fa-steam"></i>
+            </a>
+
+            <a href="https://profile.playstation.com/Slowspan" target="_blank">
+                <i class="fa-brands fa-playstation"></i>
+            </a>
+
         </div>
     </div>
 
