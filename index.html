@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>slowspan</title>
 
-<!-- FONT AWESOME -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -53,7 +52,7 @@ body{
     color:white;
 }
 
-/* PROFILE */
+/* PROFILE CARD */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -64,11 +63,19 @@ body{
     overflow:hidden;
 }
 
+/* BANNER */
+.banner img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    display:block;
+}
+
 /* AVATAR */
 .avatar-wrapper{
     width:165px;
     height:165px;
-    margin:25px auto 10px;
+    margin:-75px auto 10px; /* pulls avatar into banner */
     display:flex;
     justify-content:center;
     align-items:center;
@@ -78,7 +85,10 @@ body{
     width:165px;
     height:165px;
     object-fit:contain;
+    border-radius:50%;
+    border:4px solid rgba(0,0,0,0.6);
     filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
+    background:#111;
 }
 
 /* CONTENT */
@@ -116,7 +126,7 @@ h1{
     margin-top:12px;
 }
 
-/* FONT AWESOME ICON STYLE */
+/* FONT AWESOME ICONS */
 .socials a{
     font-size:34px;
     color:white;
@@ -125,14 +135,12 @@ h1{
     filter:drop-shadow(0 0 6px rgba(255,255,255,0.2));
 }
 
-/* HOVER EFFECT */
 .socials a:hover{
     transform:scale(1.2);
     opacity:1;
     filter:drop-shadow(0 0 12px rgba(255,255,255,0.6));
 }
 
-/* optional brand colors on hover */
 .fa-steam:hover{ color:#66c0f4; }
 .fa-playstation:hover{ color:#0070d1; }
 .fa-spotify:hover{ color:#1db954; }
@@ -149,6 +157,11 @@ src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 
 <!-- PROFILE -->
 <div class="profile">
+
+    <!-- BANNER -->
+    <div class="banner">
+        <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
+    </div>
 
     <!-- AVATAR -->
     <div class="avatar-wrapper">
@@ -169,17 +182,14 @@ src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
         <!-- SOCIALS -->
         <div class="socials">
 
-            <!-- SPOTIFY -->
             <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
                 <i class="fa-brands fa-spotify"></i>
             </a>
 
-            <!-- STEAM -->
             <a href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
                 <i class="fa-brands fa-steam"></i>
             </a>
 
-            <!-- PLAYSTATION -->
             <a href="https://profile.playstation.com/Slowspan" target="_blank">
                 <i class="fa-brands fa-playstation"></i>
             </a>
