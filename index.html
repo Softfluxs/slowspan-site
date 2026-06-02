@@ -15,9 +15,7 @@
     font-family:'Inter',sans-serif;
 }
 
-/* =========================
-   CINEMATIC BACKGROUND
-========================= */
+/* BACKGROUND */
 .bg{
     position:fixed;
     top:0;
@@ -26,26 +24,22 @@
     height:100%;
     object-fit:cover;
     z-index:-3;
-
-    /* enhancement */
-    filter:brightness(0.55) contrast(1.2) saturate(1.1);
-    transform:scale(1.05); /* slight zoom for cinematic feel */
+    filter:brightness(0.55) contrast(1.15) saturate(1.1);
+    transform:scale(1.05);
 }
 
-/* dark overlay for readability */
+/* OVERLAY */
 .overlay{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background:radial-gradient(circle at center, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+    background:rgba(0,0,0,0.55);
     z-index:-2;
 }
 
-/* =========================
-   PAGE
-========================= */
+/* PAGE */
 body{
     background:#000;
     min-height:100vh;
@@ -56,9 +50,7 @@ body{
     color:white;
 }
 
-/* =========================
-   PROFILE CARD
-========================= */
+/* PROFILE CARD */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -67,17 +59,9 @@ body{
     border-radius:24px;
     box-shadow:0 0 50px rgba(0,0,0,.65);
     overflow:hidden;
-    animation:fadeIn 1s ease;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-/* =========================
-   AVATAR
-========================= */
+/* AVATAR */
 .avatar-wrapper{
     width:165px;
     height:165px;
@@ -92,12 +76,9 @@ body{
     height:165px;
     object-fit:contain;
     filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
-    border-radius:18px;
 }
 
-/* =========================
-   CONTENT
-========================= */
+/* CONTENT */
 .content{
     text-align:center;
     padding:10px 25px 35px;
@@ -109,34 +90,47 @@ h1{
     margin-bottom:8px;
 }
 
-/* username */
+/* USERNAME */
 .username{
     display:inline-block;
     font-size:16px;
     color:#ff3b3b;
     text-decoration:none;
-    margin-bottom:14px;
+    margin-bottom:12px;
     transition:0.2s;
-    font-weight:500;
 }
 
 .username:hover{
     text-shadow:0 0 12px rgba(255,59,59,.8);
-    transform:scale(1.03);
+    transform:scale(1.05);
 }
 
-/* bio */
-.bio{
-    font-size:14px;
-    color:#b5b5b5;
-    line-height:1.6;
+/* SOCIALS */
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin-top:12px;
+}
+
+.socials a img{
+    width:30px;
+    height:30px;
+    opacity:0.85;
+    transition:0.2s;
+    filter:drop-shadow(0 0 6px rgba(255,255,255,0.15));
+}
+
+.socials a img:hover{
+    opacity:1;
+    transform:scale(1.2);
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND IMAGE (CINEMATIC) -->
+<!-- BACKGROUND -->
 <img class="bg"
 src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif"
 alt="background">
@@ -157,15 +151,29 @@ alt="background">
 
         <h1>slowspan</h1>
 
+        <!-- CLICKABLE USERNAME -->
         <a class="username"
            href="https://discord.com/users/YOUR_ID_HERE"
            target="_blank">
             @slowspan.
         </a>
 
-        <p class="bio">
-            welcome to my profile.
-        </p>
+        <!-- SOCIALS -->
+        <div class="socials">
+
+            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4?si=4e6f03cf28344dae" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png">
+            </a>
+
+            <a href="https://steamcommunity.com/profiles/76561198728733895/" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670153.png">
+            </a>
+
+            <a href="https://profile.playstation.com/Slowspan" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/871/871392.png">
+            </a>
+
+        </div>
 
     </div>
 
