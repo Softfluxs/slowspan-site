@@ -16,9 +16,9 @@
 }
 
 /* =========================
-   BACKGROUND VIDEO
+   GIF BACKGROUND
 ========================= */
-.bg-video{
+.bg-gif{
     position:fixed;
     top:0;
     left:0;
@@ -28,18 +28,7 @@
     z-index:-3;
 }
 
-/* fallback image background */
-.bg-fallback{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:url("fallback.jpg") center/cover no-repeat;
-    z-index:-4;
-}
-
-/* dark overlay */
+/* dark overlay for readability */
 .overlay{
     position:fixed;
     top:0;
@@ -99,9 +88,7 @@ body{
     filter:drop-shadow(0 0 15px rgba(255,255,255,.15));
 }
 
-/* =========================
-   CONTENT
-========================= */
+/* content */
 .content{
     text-align:center;
     padding:10px 25px 30px;
@@ -133,32 +120,19 @@ h1{
     color:#b5b5b5;
     line-height:1.6;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media(max-width:500px){
-    .profile{
-        width:90%;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO BACKGROUND -->
-<video class="bg-video" autoplay muted loop playsinline>
-    <source src="canyons.mp4" type="video/mp4">
-</video>
+<!-- GIF BACKGROUND -->
+<img class="bg-gif"
+src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif"
+alt="background">
 
-<!-- FALLBACK IMAGE (shows if video fails) -->
-<div class="bg-fallback"></div>
-
-<!-- DARK OVERLAY -->
 <div class="overlay"></div>
 
-<!-- PROFILE CARD -->
+<!-- PROFILE -->
 <div class="profile">
 
     <div class="banner"></div>
