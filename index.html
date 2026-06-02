@@ -47,7 +47,7 @@ body{
     color:white;
 }
 
-/* ENTER */
+/* ENTER SCREEN */
 .enter-screen{
     position:fixed;
     inset:0;
@@ -98,13 +98,16 @@ body{
 /* BORDER GLOW */
 @keyframes borderGlow{
     0%{
-        box-shadow:0 0 10px rgba(120,120,120,0.05),0 0 20px rgba(120,120,120,0.08);
+        box-shadow:0 0 10px rgba(120,120,120,0.05),
+                   0 0 20px rgba(120,120,120,0.08);
     }
     50%{
-        box-shadow:0 0 25px rgba(170,170,170,0.12),0 0 45px rgba(140,140,140,0.1);
+        box-shadow:0 0 25px rgba(170,170,170,0.12),
+                   0 0 45px rgba(140,140,140,0.1);
     }
     100%{
-        box-shadow:0 0 10px rgba(120,120,120,0.05),0 0 20px rgba(120,120,120,0.08);
+        box-shadow:0 0 10px rgba(120,120,120,0.05),
+                   0 0 20px rgba(120,120,120,0.08);
     }
 }
 
@@ -150,56 +153,32 @@ body{
     cursor:pointer;
 }
 
-/* AVATAR WRAPPER (CLEAN — NO RING EFFECT POSSIBLE) */
+/* AVATAR WRAPPER */
 .avatar-wrapper{
     width:165px;
     height:165px;
     margin:10px auto;
     position:relative;
 
-    display:block;
-    background:transparent !important;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:transparent;
 }
 
-/* FIXED AVATAR (NO CROPPING, NO BORDER, NO ARTIFACT RING) */
+/* 🔥 FINAL FIX: NO CIRCLE, NO CROPPING, SHOW EVERYTHING */
 .avatar{
     width:165px;
     height:165px;
 
-    object-fit:contain;
+    object-fit:contain;   /* shows full image */
     display:block;
 
-    border-radius:50%;
-
+    border-radius:0 !important;  /* ❌ removes ALL circle masking */
     border:none !important;
-    outline:none !important;
     box-shadow:none !important;
-    background:transparent !important;
-}
-
-/* EXTRA SAFETY (kills fake ring from blending) */
-.avatar-wrapper::before,
-.avatar-wrapper::after{
-    content:"";
-    display:none;
-}
-
-/* DISCORD DOT */
-.status-dot{
-    position:absolute;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-
-    background:#747f8d;
-    border:3px solid rgba(15,15,15,0.95);
-
-    bottom:4px;
-    right:4px;
-
-    transform:translate(60%,60%);
-
-    box-shadow:0 0 6px rgba(0,0,0,0.35);
+    background:transparent;
 }
 
 /* TITLE */
@@ -262,7 +241,7 @@ body{
   <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
 </audio>
 
-<!-- ENTER -->
+<!-- ENTER SCREEN -->
 <div class="enter-screen" onclick="enterSite()">
     <div class="enter-symbol">S</div>
 </div>
@@ -284,12 +263,10 @@ body{
         <button class="music-toggle" id="btn" onclick="toggleMusic()">▶</button>
     </div>
 
-    <!-- AVATAR -->
+    <!-- AVATAR (FULL, UNCROPPED, NO CIRCLE) -->
     <div class="avatar-wrapper">
         <img class="avatar"
         src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
-
-        <div class="status-dot"></div>
     </div>
 
     <!-- CONTENT -->
