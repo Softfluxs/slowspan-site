@@ -16,221 +16,175 @@
     font-family:'Inter',sans-serif;
 }
 
+body{
+    background:#000;
+    overflow:hidden;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* BACKGROUND */
 .bg{
     position:fixed;
     inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    z-index:-3;
-    filter:brightness(0.55) contrast(1.15) saturate(1.1);
-    transform:scale(1.05);
+    z-index:-2;
+    filter:brightness(0.55);
 }
 
 .overlay{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,0.55);
-    z-index:-2;
+    z-index:-1;
 }
 
-body{
-    background:#000;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    color:white;
-}
-
-.enter-screen{
+/* ENTER SCREEN */
+.enter{
     position:fixed;
     inset:0;
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:999;
     background:rgba(255,255,255,0.05);
     backdrop-filter: blur(18px);
+    z-index:999;
 }
 
-.enter-symbol{
+.enter span{
     font-size:140px;
     font-weight:800;
-    color:white;
     cursor:pointer;
-    animation:pulseGlow 2.5s infinite ease-in-out;
+    animation:pulse 2.5s infinite;
 }
 
-@keyframes pulseGlow{
-    0%{opacity:0.7; transform:scale(1);}
-    50%{opacity:1; transform:scale(1.05);}
-    100%{opacity:0.7; transform:scale(1);}
+@keyframes pulse{
+    0%{transform:scale(1); opacity:0.7;}
+    50%{transform:scale(1.08); opacity:1;}
+    100%{transform:scale(1); opacity:0.7;}
 }
 
+/* PROFILE */
 .profile{
     width:420px;
-    background:rgba(15,15,15,.72);
-    backdrop-filter:blur(22px);
+    background:rgba(15,15,15,0.72);
+    border:1px solid rgba(255,255,255,0.08);
     border-radius:24px;
-    border:1px solid rgba(255,255,255,.06);
-
+    backdrop-filter:blur(20px);
     overflow:hidden;
 
     opacity:0;
     transform:translateY(20px);
-    transition:1s ease;
-
-    animation:borderGlow 4s ease-in-out infinite;
+    transition:0.8s ease;
 }
 
 .profile.show{
     opacity:1;
     transform:translateY(0);
+    box-shadow:0 0 40px rgba(150,150,150,0.15);
 }
 
-@keyframes borderGlow{
-    0%{
-        box-shadow:0 0 10px rgba(120,120,120,0.05),
-                   0 0 20px rgba(120,120,120,0.08);
-    }
-    50%{
-        box-shadow:0 0 25px rgba(170,170,170,0.12),
-                   0 0 45px rgba(140,140,140,0.1);
-    }
-    100%{
-        box-shadow:0 0 10px rgba(120,120,120,0.05),
-                   0 0 20px rgba(120,120,120,0.08);
-    }
-}
-
+/* BANNER */
 .banner img{
     width:100%;
     height:140px;
     object-fit:cover;
-    display:block;
 }
 
-.music-card{
-    width:85%;
-    margin:12px auto;
-    padding:10px 12px;
+/* MUSIC */
+.music{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
+    margin:12px;
+    padding:10px 12px;
+    border-radius:14px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.12);
-    border-radius:14px;
 }
 
-.music-info .title{
+.music .title{
     font-size:13px;
     font-weight:600;
 }
 
-.music-info .sub{
+.music .sub{
     font-size:11px;
     opacity:0.7;
 }
 
-.music-toggle{
+.music button{
     width:34px;
     height:34px;
     border-radius:10px;
-    border:1px solid rgba(255,255,255,0.2);
-    background:rgba(0,0,0,0.25);
+    border:none;
+    background:rgba(0,0,0,0.3);
     color:white;
     cursor:pointer;
 }
 
-.avatar-wrapper{
-    width:165px;
-    height:165px;
-    margin:10px auto;
+/* AVATAR (NO CIRCLE) */
+.avatar-wrap{
     display:flex;
     justify-content:center;
-    align-items:center;
+    margin:10px 0;
 }
 
-.avatar{
+.avatar-wrap img{
     width:165px;
     height:165px;
     object-fit:contain;
-    display:block;
-
     border-radius:0;
-    border:none;
-    box-shadow:none;
 }
 
-.animated-title{
+/* TITLE */
+.name{
+    text-align:center;
     font-size:30px;
     font-weight:700;
-    display:flex;
-    justify-content:center;
-    gap:2px;
+    margin-top:5px;
 }
 
-.animated-title span{
-    opacity:0;
-    transform:translateY(10px);
-    animation:letterFade 2.5s infinite;
+.name span{
+    display:inline-block;
+    animation:fade 2.5s infinite;
 }
 
-@keyframes letterFade{
+@keyframes fade{
     0%{opacity:0; transform:translateY(10px);}
-    20%{opacity:1; transform:translateY(0);}
-    60%{opacity:1;}
+    20%{opacity:1;}
     100%{opacity:0; transform:translateY(-10px);}
 }
 
-.content{
-    text-align:center;
-    padding:10px 25px 35px;
-}
-
-.username{
-    color:#ff3b3b;
-    text-decoration:none;
-}
-
+/* SOCIALS */
 .socials{
     display:flex;
     justify-content:center;
     gap:18px;
-    margin-top:12px;
+    margin:15px 0 30px;
 }
 
 .socials a{
     font-size:34px;
     color:white;
-    opacity:0.85;
-    transition:0.25s ease;
+    transition:0.2s ease;
     display:inline-block;
-    will-change: transform;
 }
 
 .socials a:hover{
     transform:scale(1.25);
-    opacity:1;
 }
 
-.fa-spotify:hover{
-    color:#1DB954;
-    text-shadow:0 0 10px rgba(29,185,84,0.7);
-}
+/* COLORS */
+.fa-spotify:hover{color:#1DB954;}
+.fa-steam:hover{color:#00ADEE;}
+.fa-playstation:hover{color:#ffffff;}
 
-.fa-steam:hover{
-    color:#00ADEE;
-    text-shadow:0 0 10px rgba(0,173,238,0.7);
-}
-
-.fa-playstation:hover{
-    color:#ffffff;
-    text-shadow:0 0 10px rgba(255,255,255,0.6);
-}
 </style>
 </head>
 
@@ -239,88 +193,89 @@ body{
 <img class="bg" src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 <div class="overlay"></div>
 
-<audio id="bg-audio" loop>
-  <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
+<audio id="music" loop>
+<source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
 </audio>
 
-<div class="enter-screen" onclick="enterSite()">
-    <div class="enter-symbol">S</div>
+<!-- ENTER -->
+<div class="enter" onclick="start()">
+    <span>S</span>
 </div>
 
+<!-- PROFILE -->
 <div class="profile" id="profile">
 
     <div class="banner">
         <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
     </div>
 
-    <div class="music-card">
-        <div class="music-info">
+    <!-- MUSIC -->
+    <div class="music">
+        <div>
             <div class="title">See You Again</div>
             <div class="sub">Tyler The Creator</div>
         </div>
-
-        <button class="music-toggle" id="btn" onclick="toggleMusic()">▶</button>
+        <button id="btn" onclick="toggle()">▶</button>
     </div>
 
-    <div class="avatar-wrapper">
-        <img class="avatar"
-        src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
+    <!-- AVATAR -->
+    <div class="avatar-wrap">
+        <img src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
     </div>
 
-    <div class="content">
-        <h1 class="animated-title"></h1>
+    <!-- NAME -->
+    <div class="name" id="name"></div>
 
-        <a class="username">@slowspan.</a>
+    <!-- SOCIALS -->
+    <div class="socials">
 
-        <div class="socials">
+        <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
+            <i class="fa-brands fa-spotify"></i>
+        </a>
 
-            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4" target="_blank">
-                <i class="fa-brands fa-spotify"></i>
-            </a>
+        <a href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
+            <i class="fa-brands fa-steam"></i>
+        </a>
 
-            <a href="https://steamcommunity.com/profiles/76561198728733895" target="_blank">
-                <i class="fa-brands fa-steam"></i>
-            </a>
+        <a href="https://profile.playstation.com/Slowspan" target="_blank">
+            <i class="fa-brands fa-playstation"></i>
+        </a>
 
-            <a href="https://profile.playstation.com/Slowspan" target="_blank">
-                <i class="fa-brands fa-playstation"></i>
-            </a>
-
-        </div>
     </div>
 
 </div>
 
 <script>
-const audio = document.getElementById("bg-audio");
+const music = document.getElementById("music");
 const profile = document.getElementById("profile");
 const btn = document.getElementById("btn");
 
-function enterSite(){
-    document.querySelector(".enter-screen").style.display = "none";
-    audio.volume = 0.5;
-    audio.play();
+/* ENTER */
+function start(){
+    document.querySelector(".enter").style.display="none";
     profile.classList.add("show");
 }
 
-function toggleMusic(){
-    if(audio.paused){
-        audio.play();
-        btn.textContent = "❚❚";
+/* MUSIC */
+function toggle(){
+    if(music.paused){
+        music.play();
+        btn.innerText="❚❚";
     } else {
-        audio.pause();
-        btn.textContent = "▶";
+        music.pause();
+        btn.innerText="▶";
     }
 }
 
-const name = "Tyler The Creator";
-const title = document.querySelector(".animated-title");
+/* NAME ANIMATION */
+const text="slowspan";
+const name=document.getElementById("name");
 
-[...name].forEach((char, i) => {
-    const span = document.createElement("span");
-    span.textContent = char;
-    span.style.animationDelay = (i * 0.12) + "s";
-    title.appendChild(span);
+[...text].forEach((c,i)=>{
+    let s=document.createElement("span");
+    s.textContent=c;
+    s.style.animationDelay=(i*0.1)+"s";
+    name.appendChild(s);
 });
 </script>
 
