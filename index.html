@@ -16,7 +16,6 @@
     font-family:'Inter',sans-serif;
 }
 
-/* BACKGROUND */
 .bg{
     position:fixed;
     inset:0;
@@ -28,7 +27,6 @@
     transform:scale(1.05);
 }
 
-/* OVERLAY */
 .overlay{
     position:fixed;
     inset:0;
@@ -36,7 +34,6 @@
     z-index:-2;
 }
 
-/* PAGE */
 body{
     background:#000;
     min-height:100vh;
@@ -47,7 +44,6 @@ body{
     color:white;
 }
 
-/* ENTER SCREEN */
 .enter-screen{
     position:fixed;
     inset:0;
@@ -73,7 +69,6 @@ body{
     100%{opacity:0.7; transform:scale(1);}
 }
 
-/* PROFILE */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -95,7 +90,6 @@ body{
     transform:translateY(0);
 }
 
-/* BORDER GLOW */
 @keyframes borderGlow{
     0%{
         box-shadow:0 0 10px rgba(120,120,120,0.05),
@@ -111,7 +105,6 @@ body{
     }
 }
 
-/* BANNER */
 .banner img{
     width:100%;
     height:140px;
@@ -119,7 +112,6 @@ body{
     display:block;
 }
 
-/* MUSIC */
 .music-card{
     width:85%;
     margin:12px auto;
@@ -153,7 +145,6 @@ body{
     cursor:pointer;
 }
 
-/* AVATAR */
 .avatar-wrapper{
     width:165px;
     height:165px;
@@ -174,7 +165,6 @@ body{
     box-shadow:none;
 }
 
-/* TITLE */
 .animated-title{
     font-size:30px;
     font-weight:700;
@@ -196,7 +186,6 @@ body{
     100%{opacity:0; transform:translateY(-10px);}
 }
 
-/* CONTENT */
 .content{
     text-align:center;
     padding:10px 25px 35px;
@@ -207,7 +196,6 @@ body{
     text-decoration:none;
 }
 
-/* SOCIALS */
 .socials{
     display:flex;
     justify-content:center;
@@ -224,13 +212,11 @@ body{
     will-change: transform;
 }
 
-/* HOVER SCALE */
 .socials a:hover{
     transform:scale(1.25);
     opacity:1;
 }
 
-/* COLORS */
 .fa-spotify:hover{
     color:#1DB954;
     text-shadow:0 0 10px rgba(29,185,84,0.7);
@@ -250,44 +236,37 @@ body{
 
 <body>
 
-<!-- BACKGROUND -->
 <img class="bg" src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 <div class="overlay"></div>
 
-<!-- AUDIO -->
 <audio id="bg-audio" loop>
   <source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
 </audio>
 
-<!-- ENTER -->
 <div class="enter-screen" onclick="enterSite()">
     <div class="enter-symbol">S</div>
 </div>
 
-<!-- PROFILE -->
 <div class="profile" id="profile">
 
     <div class="banner">
         <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
     </div>
 
-    <!-- MUSIC -->
     <div class="music-card">
         <div class="music-info">
             <div class="title">See You Again</div>
-            <div class="sub">Tyler, The Creator</div>
+            <div class="sub">Tyler The Creator</div>
         </div>
 
         <button class="music-toggle" id="btn" onclick="toggleMusic()">▶</button>
     </div>
 
-    <!-- AVATAR -->
     <div class="avatar-wrapper">
         <img class="avatar"
         src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
     </div>
 
-    <!-- CONTENT -->
     <div class="content">
         <h1 class="animated-title"></h1>
 
@@ -334,7 +313,6 @@ function toggleMusic(){
     }
 }
 
-/* TITLE ANIMATION */
 const name = "slowspan";
 const title = document.querySelector(".animated-title");
 
