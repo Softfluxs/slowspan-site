@@ -15,7 +15,9 @@
     font-family:'Inter',sans-serif;
 }
 
-/* VIDEO BACKGROUND */
+/* =========================
+   BACKGROUND VIDEO
+========================= */
 .bg-video{
     position:fixed;
     top:0;
@@ -24,10 +26,20 @@
     height:100%;
     object-fit:cover;
     z-index:-3;
-    filter:brightness(0.45) contrast(1.1);
 }
 
-/* DARK OVERLAY */
+/* fallback image background */
+.bg-fallback{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("fallback.jpg") center/cover no-repeat;
+    z-index:-4;
+}
+
+/* dark overlay */
 .overlay{
     position:fixed;
     top:0;
@@ -38,7 +50,9 @@
     z-index:-2;
 }
 
-/* PAGE */
+/* =========================
+   PAGE
+========================= */
 body{
     background:#000;
     min-height:100vh;
@@ -49,108 +63,116 @@ body{
     color:white;
 }
 
-/* CARD */
+/* =========================
+   PROFILE CARD
+========================= */
 .profile{
     width:420px;
-    background:rgba(15,15,15,.85);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.05);
+    background:rgba(15,15,15,.75);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.06);
     border-radius:24px;
-    overflow:visible;
-    box-shadow:
-        0 0 40px rgba(0,0,0,.6),
-        inset 0 0 20px rgba(255,255,255,.02);
+    box-shadow:0 0 40px rgba(0,0,0,.6);
+    overflow:hidden;
 }
 
-/* BANNER */
+/* banner */
 .banner{
-    height:140px;
+    height:130px;
     background:rgba(255,255,255,0.03);
-    border-radius:24px 24px 0 0;
 }
 
-/* AVATAR */
+/* avatar */
 .avatar-wrapper{
-    position:relative;
-    width:180px;
-    height:180px;
-    margin:-95px auto 15px;
+    width:160px;
+    height:160px;
+    margin:-80px auto 10px;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
 .avatar{
-    width:180px;
-    height:180px;
+    width:160px;
+    height:160px;
     object-fit:contain;
     filter:drop-shadow(0 0 15px rgba(255,255,255,.15));
-    user-select:none;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
 .content{
     text-align:center;
-    padding:0 30px 30px;
+    padding:10px 25px 30px;
 }
 
-/* DISPLAY NAME */
 h1{
     font-size:30px;
     font-weight:700;
-    margin-bottom:8px;
+    margin-bottom:6px;
 }
 
-/* CLICKABLE USERNAME */
+/* username */
 .username{
     display:inline-block;
-    margin-bottom:15px;
-    font-size:16px;   /* slightly bigger */
+    font-size:16px;
     color:#ff2b2b;
     text-decoration:none;
-    transition:.2s;
+    margin-bottom:15px;
+    transition:0.2s;
 }
 
 .username:hover{
     text-shadow:0 0 10px rgba(255,43,43,.8);
 }
 
-/* BIO */
+/* bio */
 .bio{
-    color:#b5b5b5;
     font-size:14px;
+    color:#b5b5b5;
     line-height:1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:500px){
+    .profile{
+        width:90%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND VIDEO -->
+<!-- VIDEO BACKGROUND -->
 <video class="bg-video" autoplay muted loop playsinline>
     <source src="canyons.mp4" type="video/mp4">
 </video>
 
+<!-- FALLBACK IMAGE (shows if video fails) -->
+<div class="bg-fallback"></div>
+
+<!-- DARK OVERLAY -->
 <div class="overlay"></div>
 
+<!-- PROFILE CARD -->
 <div class="profile">
 
     <div class="banner"></div>
 
     <div class="avatar-wrapper">
-
         <img class="avatar"
         src="https://i.im.ge/QMiP57x/discord_fake_avatar_decorations_1780377375443.gif"
         alt="avatar">
-
     </div>
 
     <div class="content">
 
-        <!-- DISPLAY NAME -->
         <h1>slowspan</h1>
 
-        <!-- CLICKABLE RED @USERNAME -->
         <a class="username"
            href="https://discord.com/users/YOUR_ID_HERE"
            target="_blank">
