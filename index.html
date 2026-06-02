@@ -28,7 +28,7 @@
     transform:scale(1.05);
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 .overlay{
     position:fixed;
     top:0;
@@ -50,7 +50,7 @@ body{
     color:white;
 }
 
-/* PROFILE CARD */
+/* PROFILE */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -113,19 +113,21 @@ h1{
     margin-top:12px;
 }
 
-.socials a img{
+/* SVG ICONS */
+.icon svg{
     width:34px;
     height:34px;
-    object-fit:contain;
+    fill:white;
     opacity:0.85;
     transition:0.2s;
     filter:drop-shadow(0 0 6px rgba(255,255,255,0.15));
 }
 
-.socials a img:hover{
+.icon:hover svg{
+    transform:scale(1.25);
+    fill:#ff3b3b;
     opacity:1;
-    transform:scale(1.2);
-    filter:drop-shadow(0 0 10px rgba(255,255,255,0.35));
+    filter:drop-shadow(0 0 10px rgba(255,59,59,0.5));
 }
 </style>
 </head>
@@ -162,19 +164,25 @@ alt="background">
         <!-- SOCIALS -->
         <div class="socials">
 
-            <!-- Spotify -->
-            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4?si=4e6f03cf28344dae" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" alt="spotify">
+            <!-- SPOTIFY -->
+            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4?si=4e6f03cf28344dae" target="_blank" class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-.9-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 3.9-.9 7.3-.5 10.1 1.1.3.2.4.6.3.9zm1.2-2.7c-.3.4-.8.5-1.2.3-2.9-1.7-7.3-2.2-10.7-1.1-.5.1-1-.1-1.1-.6-.2-.5.1-1 .6-1.1 4-1.2 8.8-.6 12.2 1.3.4.2.5.7.2 1.2zm.1-2.9c-3.6-2.1-9.5-2.3-12.9-1.2-.6.2-1.2-.2-1.4-.8-.2-.6.2-1.2.8-1.4 4-1.2 10.5-1 14.7 1.4.5.3.7 1 .4 1.5-.3.5-1 .7-1.6.5z"/>
+                </svg>
             </a>
 
-            <!-- Steam -->
-            <a href="https://steamcommunity.com/profiles/76561198728733895/" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670153.png" alt="steam">
+            <!-- STEAM -->
+            <a href="https://steamcommunity.com/profiles/76561198728733895/" target="_blank" class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0a12 12 0 00-4.2 23.2l3.2-3a3.5 3.5 0 114.8-4.8l3-3.2A12 12 0 0012 0zm-1.5 15a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
             </a>
 
-            <!-- PlayStation -->
-            <a href="https://profile.playstation.com/Slowspan" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/871/871392.png" alt="psn">
+            <!-- PLAYSTATION -->
+            <a href="https://profile.playstation.com/Slowspan" target="_blank" class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 17c2-1 5-1 7 0l-2 1c-1-.5-3-.5-5 0v-1zm16-10c-2-1-5-1-7 0l2 1c1-.5 3-.5 5 0V7zM12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+                </svg>
             </a>
 
         </div>
