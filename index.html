@@ -65,19 +65,36 @@ body{
     -webkit-backdrop-filter: blur(18px);
 }
 
+/* COOL "S" */
 .enter-symbol{
-    font-size:120px;
+    font-size:140px;
     font-weight:800;
+    letter-spacing:8px;
+
     color:white;
-    opacity:0.85;
     cursor:pointer;
-    transition:0.25s;
-    text-shadow:0 0 25px rgba(255,255,255,0.15);
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.2),
+        0 0 25px rgba(255,255,255,0.15),
+        0 0 45px rgba(255,255,255,0.1);
+
+    animation:pulseGlow 2.5s infinite ease-in-out;
+    transition:0.3s;
 }
 
 .enter-symbol:hover{
-    transform:scale(1.15);
-    opacity:1;
+    transform:scale(1.2) rotate(-3deg);
+    letter-spacing:12px;
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.35),
+        0 0 50px rgba(255,255,255,0.2);
+}
+
+@keyframes pulseGlow{
+    0%{opacity:0.7; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.05);}
+    100%{opacity:0.7; transform:scale(1);}
 }
 
 /* ================= PROFILE ================= */
@@ -87,17 +104,40 @@ body{
     backdrop-filter:blur(22px);
     border:1px solid rgba(255,255,255,.06);
     border-radius:24px;
-    box-shadow:0 0 50px rgba(0,0,0,.65);
     overflow:hidden;
 
     opacity:0;
     transform:translateY(20px);
     transition:1s ease;
+
+    animation:borderGlow 4s ease-in-out infinite;
 }
 
 .profile.show{
     opacity:1;
     transform:translateY(0);
+}
+
+/* GREY GLOW BORDER */
+@keyframes borderGlow{
+    0%{
+        box-shadow:
+            0 0 10px rgba(120,120,120,0.05),
+            0 0 20px rgba(120,120,120,0.08),
+            0 0 40px rgba(120,120,120,0.05);
+    }
+    50%{
+        box-shadow:
+            0 0 15px rgba(180,180,180,0.12),
+            0 0 35px rgba(160,160,160,0.1),
+            0 0 60px rgba(140,140,140,0.08);
+    }
+    100%{
+        box-shadow:
+            0 0 10px rgba(120,120,120,0.05),
+            0 0 20px rgba(120,120,120,0.08),
+            0 0 40px rgba(120,120,120,0.05);
+    }
 }
 
 /* BANNER */
@@ -108,7 +148,7 @@ body{
     display:block;
 }
 
-/* ================= MUSIC CARD ================= */
+/* MUSIC CARD */
 .music-card{
     width:85%;
     margin:12px auto;
@@ -153,7 +193,7 @@ body{
     border-color:white;
 }
 
-/* ================= AVATAR ================= */
+/* AVATAR */
 .avatar-wrapper{
     width:165px;
     height:165px;
@@ -250,7 +290,7 @@ h1{
     <!-- MUSIC CARD -->
     <div class="music-card">
         <div class="music-info">
-            <div class="title">Unknown Track</div>
+            <div class="title">See You Again</div>
             <div class="sub">slowspan</div>
         </div>
 
@@ -295,8 +335,6 @@ const audio = document.getElementById("bg-audio");
 const profile = document.getElementById("profile");
 const btn = document.getElementById("musicBtn");
 
-let playing = false;
-
 function enterSite(){
     document.querySelector(".enter-screen").style.display = "none";
 
@@ -305,7 +343,6 @@ function enterSite(){
 
     profile.classList.add("show");
 
-    playing = true;
     btn.textContent = "❚❚";
 }
 
