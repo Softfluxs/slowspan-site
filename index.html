@@ -94,27 +94,28 @@ body{
     padding:0 30px 30px;
 }
 
+/* DISPLAY NAME */
 h1{
     font-size:30px;
     font-weight:700;
-    margin-bottom:6px;
+    margin-bottom:8px;
 }
 
-/* CLICKABLE @USERNAME (BIGGER + RED) */
+/* CLICKABLE USERNAME */
 .username{
     display:inline-block;
     margin-bottom:15px;
-    font-size:15px; /* slightly bigger */
+    font-size:16px;   /* slightly bigger */
     color:#ff2b2b;
     text-decoration:none;
     transition:.2s;
-    font-weight:500;
 }
 
 .username:hover{
     text-shadow:0 0 10px rgba(255,43,43,.8);
 }
 
+/* BIO */
 .bio{
     color:#b5b5b5;
     font-size:14px;
@@ -125,9 +126,9 @@ h1{
 
 <body>
 
-<!-- VIDEO BACKGROUND (YOUR UPLOADED FILE) -->
+<!-- BACKGROUND VIDEO -->
 <video class="bg-video" autoplay muted loop playsinline>
-    <source src="/mnt/data/aifaceswap-FPV Drone Flight through Beautiful Iceland Canyon.webm" type="video/webm">
+    <source src="canyons.mp4" type="video/mp4">
 </video>
 
 <div class="overlay"></div>
@@ -146,8 +147,10 @@ h1{
 
     <div class="content">
 
+        <!-- DISPLAY NAME -->
         <h1>slowspan</h1>
 
+        <!-- CLICKABLE RED @USERNAME -->
         <a class="username"
            href="https://discord.com/users/YOUR_ID_HERE"
            target="_blank">
