@@ -15,8 +15,10 @@
     font-family:'Inter',sans-serif;
 }
 
-/* NEW BACKGROUND (was banner before) */
-.bg-gif{
+/* =========================
+   CINEMATIC BACKGROUND
+========================= */
+.bg{
     position:fixed;
     top:0;
     left:0;
@@ -24,20 +26,26 @@
     height:100%;
     object-fit:cover;
     z-index:-3;
+
+    /* enhancement */
+    filter:brightness(0.55) contrast(1.2) saturate(1.1);
+    transform:scale(1.05); /* slight zoom for cinematic feel */
 }
 
-/* DARK OVERLAY */
+/* dark overlay for readability */
 .overlay{
     position:fixed;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.55);
+    background:radial-gradient(circle at center, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
     z-index:-2;
 }
 
-/* PAGE */
+/* =========================
+   PAGE
+========================= */
 body{
     background:#000;
     min-height:100vh;
@@ -48,67 +56,76 @@ body{
     color:white;
 }
 
-/* PROFILE CARD */
+/* =========================
+   PROFILE CARD
+========================= */
 .profile{
     width:420px;
-    background:rgba(15,15,15,.75);
-    backdrop-filter:blur(20px);
+    background:rgba(15,15,15,.72);
+    backdrop-filter:blur(22px);
     border:1px solid rgba(255,255,255,.06);
     border-radius:24px;
-    box-shadow:0 0 40px rgba(0,0,0,.6);
+    box-shadow:0 0 50px rgba(0,0,0,.65);
     overflow:hidden;
+    animation:fadeIn 1s ease;
 }
 
-/* NEW BANNER (was background before) */
-.banner{
-    height:140px;
-    background:url("https://i.im.ge/QMiP3C8/9f5acaae03db8cd6b3fc0f608c07ae0b_1.gif") center/cover no-repeat;
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-/* AVATAR */
+/* =========================
+   AVATAR
+========================= */
 .avatar-wrapper{
-    width:160px;
-    height:160px;
-    margin:-80px auto 10px;
+    width:165px;
+    height:165px;
+    margin:25px auto 10px;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
 .avatar{
-    width:160px;
-    height:160px;
+    width:165px;
+    height:165px;
     object-fit:contain;
-    filter:drop-shadow(0 0 15px rgba(255,255,255,.15));
+    filter:drop-shadow(0 0 18px rgba(255,255,255,.18));
+    border-radius:18px;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
 .content{
     text-align:center;
-    padding:10px 25px 30px;
+    padding:10px 25px 35px;
 }
 
 h1{
     font-size:30px;
     font-weight:700;
-    margin-bottom:6px;
+    margin-bottom:8px;
 }
 
-/* USERNAME */
+/* username */
 .username{
     display:inline-block;
     font-size:16px;
-    color:#ff2b2b;
+    color:#ff3b3b;
     text-decoration:none;
-    margin-bottom:15px;
+    margin-bottom:14px;
     transition:0.2s;
+    font-weight:500;
 }
 
 .username:hover{
-    text-shadow:0 0 10px rgba(255,43,43,.8);
+    text-shadow:0 0 12px rgba(255,59,59,.8);
+    transform:scale(1.03);
 }
 
-/* BIO */
+/* bio */
 .bio{
     font-size:14px;
     color:#b5b5b5;
@@ -119,21 +136,20 @@ h1{
 
 <body>
 
-<!-- NEW BACKGROUND -->
-<img class="bg-gif"
-src="https://i.im.ge/QMitxRT/a8d51b3626ab1832e180770eb4de9ec2.gif"
+<!-- BACKGROUND IMAGE (CINEMATIC) -->
+<img class="bg"
+src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif"
 alt="background">
 
 <div class="overlay"></div>
 
+<!-- PROFILE -->
 <div class="profile">
 
-    <!-- SWAPPED BANNER -->
-    <div class="banner"></div>
-
+    <!-- AVATAR -->
     <div class="avatar-wrapper">
         <img class="avatar"
-        src="https://i.im.ge/QMiP57x/discord_fake_avatar_decorations_1780377375443.gif"
+        src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif"
         alt="avatar">
     </div>
 
