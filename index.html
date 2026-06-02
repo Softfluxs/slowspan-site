@@ -15,8 +15,8 @@
     font-family:'Inter',sans-serif;
 }
 
-/* BACKGROUND GIF */
-.bg-gif{
+/* VIDEO BACKGROUND */
+.bg-video{
     position:fixed;
     top:0;
     left:0;
@@ -27,7 +27,7 @@
     filter:brightness(0.45) contrast(1.1);
 }
 
-/* DARK OVERLAY (makes text readable) */
+/* DARK OVERLAY */
 .overlay{
     position:fixed;
     top:0;
@@ -45,11 +45,11 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
     overflow:hidden;
+    color:white;
 }
 
-/* PROFILE CARD */
+/* CARD */
 .profile{
     width:420px;
     background:rgba(15,15,15,.85);
@@ -100,14 +100,15 @@ h1{
     margin-bottom:6px;
 }
 
-/* RED CLICKABLE @USERNAME */
+/* CLICKABLE @USERNAME (BIGGER + RED) */
 .username{
     display:inline-block;
     margin-bottom:15px;
-    font-size:13px;
+    font-size:15px; /* slightly bigger */
     color:#ff2b2b;
     text-decoration:none;
     transition:.2s;
+    font-weight:500;
 }
 
 .username:hover{
@@ -124,10 +125,10 @@ h1{
 
 <body>
 
-<!-- BACKGROUND GIF -->
-<img class="bg-gif"
-src="https://i.im.ge/QMiP3C8/9f5acaae03db8cd6b3fc0f608c07ae0b_1.gif"
-alt="background">
+<!-- VIDEO BACKGROUND (YOUR UPLOADED FILE) -->
+<video class="bg-video" autoplay muted loop playsinline>
+    <source src="/mnt/data/aifaceswap-FPV Drone Flight through Beautiful Iceland Canyon.webm" type="video/webm">
+</video>
 
 <div class="overlay"></div>
 
