@@ -50,7 +50,7 @@ body{
     color:white;
 }
 
-/* PROFILE CARD */
+/* PROFILE */
 .profile{
     width:420px;
     background:rgba(15,15,15,.72);
@@ -113,30 +113,21 @@ h1{
     margin-top:12px;
 }
 
-/* ICON BASE */
+/* ICON STYLE */
 .icon svg{
     width:34px;
     height:34px;
     fill:white;
-    opacity:0.75;
+    opacity:0.8;
     transition:0.2s;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,0.15));
+    filter:drop-shadow(0 0 6px rgba(255,255,255,0.2));
 }
 
 /* HOVER EFFECT */
 .icon:hover svg{
     transform:scale(1.25);
     opacity:1;
-    filter:drop-shadow(0 0 12px rgba(255,59,59,0.6));
-}
-
-/* BRAND COLORS */
-.steam:hover svg{
-    fill:#66c0f4;
-}
-
-.psn:hover svg{
-    fill:#0070d1;
+    filter:drop-shadow(0 0 12px rgba(255,255,255,0.5));
 }
 </style>
 </head>
@@ -145,8 +136,7 @@ h1{
 
 <!-- BACKGROUND -->
 <img class="bg"
-src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif"
-alt="background">
+src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
 
 <div class="overlay"></div>
 
@@ -156,8 +146,7 @@ alt="background">
     <!-- AVATAR -->
     <div class="avatar-wrapper">
         <img class="avatar"
-        src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif"
-        alt="avatar">
+        src="https://i.im.ge/QMitJ4X/discord_fake_avatar_decorations_1780383216399.gif">
     </div>
 
     <div class="content">
@@ -174,23 +163,23 @@ alt="background">
         <div class="socials">
 
             <!-- SPOTIFY -->
-            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4?si=4e6f03cf28344dae" target="_blank" class="icon spotify">
+            <a href="https://open.spotify.com/user/312ygzuq5botjx3u6sfcck5lm7r4?si=4e6f03cf28344dae" target="_blank" class="icon">
                 <svg viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-.9-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 3.9-.9 7.3-.5 10.1 1.1.3.2.4.6.3.9z"/>
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.2-.9-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 3.9-.9 7.3-.5 10.1 1.1.3.2.4.6.3.9z"/>
                 </svg>
             </a>
 
             <!-- STEAM -->
-            <a href="https://steamcommunity.com/profiles/76561198728733895/" target="_blank" class="icon steam">
+            <a href="https://steamcommunity.com/profiles/76561198728733895/" target="_blank" class="icon">
                 <svg viewBox="0 0 512 512">
-                    <path fill="currentColor" d="M18 18v31.758C38.244 53.855 59.076 55.953 80 56a318 318 0 0 0 50.658-4.27C143.375 100.622 200.964 135.96 268 136c15.1-.044 30.093-1.903 44.395-5.504c3.702 25.632 27.322 44.78 55.275 44.813c4.215 14.473 20.33 24.72 38.906 24.738c22.09 0 40-14.327 40-32c-.022-13.555-10.718-25.63-26.697-30.137z"/>
+                    <path d="M18 18v31.758C38.244 53.855 59.076 55.953 80 56a318 318 0 0 0 50.658-4.27C143.375 100.622 200.964 135.96 268 136c15.1-.044 30.093-1.903 44.395-5.504c3.702 25.632 27.322 44.78 55.275 44.813c4.215 14.473 20.33 24.72 38.906 24.738c22.09 0 40-14.327 40-32c-.022-13.555-10.718-25.63-26.697-30.137z"/>
                 </svg>
             </a>
 
             <!-- PLAYSTATION -->
-            <a href="https://profile.playstation.com/Slowspan" target="_blank" class="icon psn">
+            <a href="https://profile.playstation.com/Slowspan" target="_blank" class="icon">
                 <svg viewBox="0 0 8 8">
-                    <path fill="currentColor" d="M2 6v1q-4 0 0-3v1L1 6m4 1l1-1H5V5q4 0 0 3M4 8L3 7V0q5 0 0 3"/>
+                    <path d="M2 6v1q-4 0 0-3v1L1 6m4 1l1-1H5V5q4 0 0 3M4 8L3 7V0q5 0 2 4V2L4 1"/>
                 </svg>
             </a>
 
