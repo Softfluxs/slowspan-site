@@ -185,16 +185,24 @@ body{
     transform:scale(1.3);
 }
 
-/* COLORS */
-.fa-spotify:hover{color:#1DB954;}
-.fa-steam:hover{color:#00ADEE;}
-.fa-playstation:hover{color:#ffffff;}
+.fa-spotify:hover{
+    color:#1DB954;
+}
+
+.fa-steam:hover{
+    color:#00ADEE;
+}
+
+.fa-playstation:hover{
+    color:#ffffff;
+}
 </style>
 </head>
 
 <body>
 
-<img class="bg" src="https://i.im.ge/QMitCuW/9c14863b9e64ffc65cdfda4cdc9a0b99_1.gif">
+<!-- NEW BACKGROUND -->
+<img class="bg" src="https://i.im.ge/QMiEYmJ/1000025463.gif">
 <div class="overlay"></div>
 
 <audio id="music" loop>
@@ -248,7 +256,6 @@ const music = document.getElementById("music");
 const profile = document.getElementById("profile");
 const btn = document.getElementById("btn");
 
-/* ENTER + AUTOPLAY MUSIC */
 function start(){
     document.querySelector(".enter").style.display="none";
     profile.classList.add("show");
@@ -260,7 +267,6 @@ function start(){
     });
 }
 
-/* MUSIC TOGGLE */
 function toggle(){
     if(music.paused){
         music.play();
@@ -271,7 +277,6 @@ function toggle(){
     }
 }
 
-/* NAME ANIMATION */
 const text="slowspan";
 const name=document.getElementById("name");
 
