@@ -27,8 +27,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
 .banner>svg{width:100%;height:100%;display:block}
 .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 70%,#f4f8fb)}
 .avatar-wrap{position:relative;width:112px;height:112px;margin:-47px auto 17px;border-radius:50%;padding:7px;background:#f4f8fb;border:1px solid #fff;box-shadow:0 4px 18px #46617325}
-.avatar-frame{width:100%;height:100%;position:relative;z-index:1;border-radius:50%;overflow:hidden}
-.avatar{display:block;width:100%;height:100%;object-fit:contain;transform:scale(1.9) translateY(-11%);transform-origin:center}
+.avatar{width:100%;height:100%;object-fit:contain;border-radius:50%;position:relative;z-index:1}
 .avatar-fallback{position:absolute;inset:7px;display:grid;place-items:center;border-radius:50%;background:#dce8ed;font:italic 57px 'Playfair Display',Georgia,serif;color:var(--gold)}
 .eyebrow{text-transform:uppercase;font-size:9px;letter-spacing:.24em;font-weight:600;color:var(--gold)}
 h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:49px;letter-spacing:-.04em;line-height:1.2;margin:5px 0 9px}
@@ -92,7 +91,7 @@ h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:49px;l
     </div>
     <div class="avatar-wrap">
       <span class="avatar-fallback" aria-hidden="true">s</span>
-      <div class="avatar-frame"><img class="avatar" id="avatar" src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif" alt="slowspan's avatar" width="96" height="96"></div>
+      <img class="avatar" id="avatar" src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif" alt="slowspan's avatar" width="96" height="96">
     </div>
     <h1>slowspan</h1>
     <p class="greeting">Cold nights. Warm lights. Good music.<br>Stay a little, it’s cozy here.</p>
