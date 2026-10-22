@@ -3,244 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>slowspan</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<meta name="theme-color" content="#102c24">
+<meta name="description" content="A little Christmas magic, a favorite song, and a moment to slow down. Welcome to slowspan.">
+<title>slowspan · a little Christmas magic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter',sans-serif;
-}
-
-body{
-    background:#000;
-    overflow:hidden;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-/* BACKGROUND */
-.bg{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:-2;
-    filter:brightness(0.55);
-}
-
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.55);
-    z-index:-1;
-}
-
-/* ENTER SCREEN */
-.enter{
-    position:fixed;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter: blur(18px);
-    z-index:999;
-}
-
-.enter span{
-    font-size:140px;
-    font-weight:800;
-    cursor:pointer;
-    animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-    0%{transform:scale(1); opacity:0.7;}
-    50%{transform:scale(1.08); opacity:1;}
-    100%{transform:scale(1); opacity:0.7;}
-}
-
-/* PROFILE */
-.profile{
-    width:420px;
-    background:rgba(15,15,15,0.72);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:24px;
-    backdrop-filter:blur(20px);
-    overflow:hidden;
-
-    opacity:0;
-    transform:translateY(20px);
-    transition:0.8s ease;
-}
-
-.profile.show{
-    opacity:1;
-    transform:translateY(0);
-    box-shadow:0 0 40px rgba(150,150,150,0.15);
-}
-
-/* BANNER */
-.banner img{
-    width:100%;
-    height:140px;
-    object-fit:cover;
-}
-
-/* MUSIC */
-.music{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:12px;
-    padding:10px 12px;
-    border-radius:14px;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.12);
-}
-
-.music .title{
-    font-size:13px;
-    font-weight:600;
-}
-
-.music .sub{
-    font-size:11px;
-    opacity:0.7;
-}
-
-.music button{
-    width:34px;
-    height:34px;
-    border-radius:10px;
-    border:none;
-    background:rgba(0,0,0,0.3);
-    color:white;
-    cursor:pointer;
-    transition:0.2s ease;
-}
-
-.music button:hover{
-    transform:scale(1.1);
-}
-
-/* AVATAR */
-.avatar-wrap{
-    display:flex;
-    justify-content:center;
-    margin:10px 0;
-}
-
-.avatar-wrap img{
-    width:165px;
-    height:165px;
-    object-fit:contain;
-    border-radius:0;
-}
-
-/* TITLE */
-.name{
-    text-align:center;
-    font-size:30px;
-    font-weight:700;
-    margin:20px 0 30px;
-}
-
-.name span{
-    display:inline-block;
-    animation:fade 2.5s infinite;
-}
-
-@keyframes fade{
-    0%{opacity:0; transform:translateY(10px);}
-    20%{opacity:1;}
-    100%{opacity:0; transform:translateY(-10px);}
-}
+:root{color-scheme:dark;--cream:#f5eedc;--gold:#d7b775;--muted:#b1bfb0;--pine:#102c24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;min-height:100svh;background:radial-gradient(ellipse at 50% 30%,#264b3b 0%,#102c24 45%,#081a17 100%);color:var(--cream);font-family:'DM Sans',sans-serif}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+[hidden]{display:none!important}
+.page{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:62px 20px 24px;position:relative;isolation:isolate}
+.page::before{content:"";position:fixed;inset:18px;border:1px solid #d7b77520;pointer-events:none;z-index:-1}
+.lights{position:absolute;top:0;left:0;width:100%;height:53px;overflow:hidden;pointer-events:none}
+.lights svg{width:100%;height:100%;min-width:700px;position:absolute;left:50%;transform:translateX(-50%)}
+.snow{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.flake{position:absolute;top:-16px;width:3px;height:3px;border-radius:50%;background:#fff8e4;opacity:.4;animation:snowfall linear infinite}
+@keyframes snowfall{to{transform:translate(35px,calc(100vh + 20px))}}
+.season{font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;text-align:center}
+.season span{margin:0 13px;font-size:14px}
+.profile{width:min(100%,410px);border:1px solid #d7b77555;border-radius:180px 180px 20px 20px;background:#112b23;box-shadow:0 24px 90px #0005;overflow:hidden;text-align:center;position:relative}
+.banner{height:195px;position:relative;background:radial-gradient(ellipse at 50% 75%,#466148,#1c3b2e 65%);overflow:hidden}
+.banner>svg{width:100%;height:100%;display:block}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 70%,#112b23)}
+.avatar-wrap{position:relative;width:112px;height:112px;margin:-47px auto 17px;border-radius:50%;padding:7px;background:#112b23;border:1px solid #d7b77588}
+.avatar{width:100%;height:100%;object-fit:contain;border-radius:50%;position:relative;z-index:1}
+.avatar-fallback{position:absolute;inset:7px;display:grid;place-items:center;border-radius:50%;background:#284637;font:italic 57px 'Playfair Display',Georgia,serif;color:var(--gold)}
+.hat{position:absolute;z-index:2;width:62px;height:56px;right:-12px;top:-20px;transform:rotate(20deg);filter:drop-shadow(0 3px 3px #0003)}
+.eyebrow{text-transform:uppercase;font-size:9px;letter-spacing:.24em;font-weight:600;color:var(--gold)}
+h1{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:49px;letter-spacing:-.04em;line-height:1.2;margin:5px 0 9px}
+.greeting{color:var(--muted);font-size:12px;line-height:1.7;padding:0 20px}
+.divider{display:flex;align-items:center;justify-content:center;gap:13px;color:var(--gold);margin:20px 30px 17px;font-size:13px}
+.divider::before,.divider::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,#d7b77555)}
+.divider::after{transform:rotate(180deg)}
+.music{margin:0 23px;padding:13px;display:flex;align-items:center;gap:11px;border:1px solid #d7b77530;border-radius:12px;background:#ffffff05;text-align:left}
+.record{width:39px;height:39px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle,#17241e 0 2px,#334034 3px 4px);border:1px solid #657151}
+.record::after{content:"";width:13px;height:13px;background:#a5463f;border:4px solid #c56c57;border-radius:50%}
+.track{flex:1;min-width:0}
+.track-label{font-size:8px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.title{font-size:12px;font-weight:600}.artist{font-size:10px;color:var(--muted);margin-top:3px}
+.music button{width:35px;height:35px;flex-shrink:0;border-radius:50%;border:1px solid #d7b77555;background:#d7b775;color:#173026;display:grid;place-items:center;transition:background .2s,transform .2s}
+.music button:hover{background:#efce8b;transform:scale(1.06)}
+.music button svg{width:14px;height:14px;fill:currentColor}
+.status{font-size:10px;color:var(--muted);margin:8px 23px 0;line-height:1.4}
+.card-footer{display:flex;align-items:center;justify-content:center;gap:8px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding:22px 14px}
+.holly{width:27px;height:20px}
+.page-footer{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:14px;color:#a7b69e;margin-top:22px;text-align:center}
+.enter{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:25px;background:#0b2119e8;backdrop-filter:blur(16px);text-align:center}
+.enter .ornament{position:relative;border:1px solid #d7b77577;width:116px;height:116px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#b3544d,#752d30 70%);box-shadow:inset 0 0 25px #ffffff0a,0 12px 50px #0004;margin:0 0 30px;color:var(--cream);font:italic 65px 'Playfair Display',Georgia,serif}
+.ornament::before{content:"";position:absolute;top:-18px;width:21px;height:17px;background:var(--gold);border-radius:5px 5px 0 0}
+.ornament::after{content:"";position:absolute;bottom:calc(100% + 18px);height:80px;width:1px;background:linear-gradient(transparent,var(--gold))}
+.enter h2{font:500 clamp(32px,7vw,43px) 'Playfair Display',Georgia,serif;margin:11px 0 12px}
+.enter p{font-size:12px;color:var(--muted);line-height:1.8}
+.enter-button{margin-top:26px;background:#f1e7ce;color:#193329;border:1px solid #f1e7ce;border-radius:30px;padding:13px 28px;font-size:12px;font-weight:700;transition:background .2s,transform .2s}
+.enter-button:hover{background:#d7b775;transform:translateY(-2px)}
+.enter small{color:#9dad9c;font-size:10px;margin-top:13px}
+@media(max-width:480px){.page{padding:58px 24px 24px}.page::before{inset:10px}.season{font-size:9px;letter-spacing:.2em}.season span{margin:0 8px}.banner{height:175px}h1{font-size:44px}.music{margin:0 17px}.page-footer{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.snow{display:none}}
 </style>
 </head>
-
 <body>
-
-<!-- BACKGROUND -->
-<img class="bg" src="https://i.im.ge/QMiEYmJ/1000025463.gif">
-<div class="overlay"></div>
-
-<audio id="music" loop>
-<source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3">
-</audio>
-
-<!-- ENTER -->
-<div class="enter" onclick="start()">
-    <span>S</span>
-</div>
-
-<!-- PROFILE -->
-<div class="profile" id="profile">
-
-    <div class="banner">
-        <img src="https://i.im.ge/QMiy7oT/24baee95217b413d6a9512f0309831b8_1.gif">
+<div class="page">
+  <div class="lights" aria-hidden="true">
+    <svg viewBox="0 0 1200 55" preserveAspectRatio="none"><defs><filter id="glow"><feGaussianBlur stdDeviation="3"/></filter></defs><path d="M0 5 Q300 65 600 14 Q900 65 1200 5" fill="none" stroke="#718267" stroke-width="1"/><g fill="#f6d795"><g opacity=".45" filter="url(#glow)"><circle cx="70" cy="21" r="8"/><circle cx="240" cy="37" r="8"/><circle cx="410" cy="33" r="8"/><circle cx="580" cy="20" r="8"/><circle cx="750" cy="35" r="8"/><circle cx="920" cy="36" r="8"/><circle cx="1100" cy="25" r="8"/></g><ellipse cx="70" cy="21" rx="3" ry="5"/><ellipse cx="240" cy="37" rx="3" ry="5"/><ellipse cx="410" cy="33" rx="3" ry="5"/><ellipse cx="580" cy="20" rx="3" ry="5"/><ellipse cx="750" cy="35" rx="3" ry="5"/><ellipse cx="920" cy="36" rx="3" ry="5"/><ellipse cx="1100" cy="25" rx="3" ry="5"/></g></svg>
+  </div>
+  <div class="snow" id="snow" aria-hidden="true"></div>
+  <div class="season"><span aria-hidden="true">✦</span> the Christmas edition <span aria-hidden="true">✦</span></div>
+  <main class="profile" id="profile" aria-label="slowspan profile">
+    <div class="banner" aria-hidden="true">
+      <svg viewBox="0 0 410 195" preserveAspectRatio="xMidYMid slice">
+        <defs><linearGradient id="tree" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#638368"/><stop offset="1" stop-color="#2a4e38"/></linearGradient><radialGradient id="star"><stop stop-color="#f7d998" stop-opacity=".4"/><stop offset="1" stop-color="#f7d998" stop-opacity="0"/></radialGradient><path id="fir" d="M0 0 -20 32 -11 32 -31 58 -17 58 -43 89 43 89 17 58 31 58 11 32 20 32Z"/></defs>
+        <g fill="#b9c5ab" opacity=".65"><circle cx="60" cy="68" r="1"/><circle cx="111" cy="39" r="1.4"/><circle cx="155" cy="66" r="1"/><circle cx="260" cy="47" r="1.2"/><circle cx="307" cy="82" r="1"/><circle cx="354" cy="66" r="1.2"/><circle cx="286" cy="22" r="1"/><circle cx="83" cy="110" r="1.2"/><circle cx="332" cy="120" r="1"/></g>
+        <g fill="#203d2c"><use href="#fir" transform="translate(36 82) scale(1.2)"/><use href="#fir" transform="translate(365 75) scale(1.4)"/><use href="#fir" transform="translate(103 76) scale(.85)"/><use href="#fir" transform="translate(300 86) scale(.9)"/></g>
+        <path d="M0 170 Q95 143 180 166 T410 160 V195 H0Z" fill="#a6b899" opacity=".13"/>
+        <circle cx="205" cy="47" r="45" fill="url(#star)"/>
+        <path d="M205 37 208 44 216 45 210 50 212 58 205 54 198 58 200 50 194 45 202 44Z" fill="#f0cf86"/>
+        <use href="#fir" transform="translate(205 58) scale(1.16)" fill="url(#tree)"/>
+        <path d="M193 86 Q205 94 220 89 M184 111 Q205 122 232 113 M170 141 Q203 155 245 143" fill="none" stroke="#d7b775" stroke-width="1.1" opacity=".8"/>
+        <g fill="#f7dfa0"><circle cx="199" cy="89" r="2"/><circle cx="218" cy="89" r="2"/><circle cx="190" cy="114" r="2"/><circle cx="209" cy="118" r="2"/><circle cx="229" cy="114" r="2"/><circle cx="179" cy="144" r="2"/><circle cx="201" cy="149" r="2"/><circle cx="225" cy="148" r="2"/><circle cx="242" cy="144" r="2"/></g>
+        <g fill="#ba5b4c"><circle cx="207" cy="101" r="3"/><circle cx="194" cy="132" r="3"/><circle cx="223" cy="132" r="3"/></g>
+      </svg>
     </div>
-
-    <div class="music">
-        <div>
-            <div class="title">See You Again</div>
-            <div class="sub">Tyler The Creator</div>
-        </div>
-        <button id="btn" onclick="toggle()">▶</button>
-    </div>
-
     <div class="avatar-wrap">
-        <img src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif">
+      <span class="avatar-fallback" aria-hidden="true">s</span>
+      <img class="avatar" id="avatar" src="https://i.im.ge/QMiyfHf/discord_fake_avatar_decorations_1780383216399.gif" alt="slowspan's avatar" width="96" height="96">
+      <svg class="hat" viewBox="0 0 70 60" aria-hidden="true"><path d="M10 45 Q14 12 39 8 Q58 5 62 28 L49 30 Q45 21 39 25 L42 45Z" fill="#ad4141"/><path d="M15 41 Q20 18 37 13" fill="none" stroke="#ce6861" stroke-width="3"/><rect x="5" y="40" width="44" height="13" rx="6.5" fill="#f6efd9"/><circle cx="60" cy="30" r="9" fill="#f6efd9"/></svg>
     </div>
-
-    <div class="name" id="name"></div>
-
+    <p class="eyebrow">a little Christmas magic</p>
+    <h1>slowspan</h1>
+    <p class="greeting">Cold nights. Warm lights. Good music.<br>Stay a little, it’s cozy here.</p>
+    <div class="divider" aria-hidden="true">✧</div>
+    <div class="music">
+      <div class="record" aria-hidden="true"></div>
+      <div class="track"><p class="track-label">a song to stay awhile</p><p class="title">See You Again</p><p class="artist">Tyler The Creator</p></div>
+      <button id="music-toggle" type="button" aria-label="Play music" aria-pressed="false">
+        <svg id="play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 14 8 4 14Z"/></svg>
+        <svg id="pause-icon" viewBox="0 0 16 16" aria-hidden="true" hidden><path d="M3 2h4v12H3zM10 2h4v12h-4z"/></svg>
+      </button>
+    </div>
+    <p class="status" id="music-status" role="status" hidden></p>
+    <footer class="card-footer"><svg class="holly" viewBox="0 0 32 24" aria-hidden="true"><path d="M16 15C4 17 1 8 2 3 7 5 16 3 16 15M17 14C18 3 27 1 31 4 28 8 29 16 17 14" fill="#638467"/><g fill="#c36557"><circle cx="14" cy="16" r="3"/><circle cx="20" cy="16" r="3"/><circle cx="17" cy="20" r="3"/></g></svg> merry Christmas, from slowspan</footer>
+  </main>
+  <p class="page-footer">May your days be merry &amp; bright.</p>
 </div>
-
+<audio id="music" loop preload="none"><source src="https://videotourl.com/audio/1780387263434-fd66ba40-2bfa-4b32-afc5-a312db49cb96.mp3" type="audio/mpeg"></audio>
+<section class="enter" id="enter" aria-labelledby="welcome-title">
+  <div class="ornament" aria-hidden="true">s</div>
+  <span class="eyebrow">Christmas at slowspan</span>
+  <h2 id="welcome-title">Come in from the cold.</h2>
+  <p>A little music. A little magic.<br>A cozy corner of the internet.</p>
+  <button class="enter-button" id="enter-button" type="button">Step inside <span aria-hidden="true">↗</span></button>
+  <small>Enter with music</small>
+</section>
+<noscript><style>.enter{display:none}</style><p style="text-align:center;padding:16px">Enable JavaScript to use the music player.</p></noscript>
 <script>
-const music = document.getElementById("music");
-const profile = document.getElementById("profile");
-const btn = document.getElementById("btn");
-
-function start(){
-    document.querySelector(".enter").style.display="none";
-    profile.classList.add("show");
-
-    music.play().then(() => {
-        btn.innerText = "❚❚";
-    }).catch(err => {
-        console.log("Autoplay blocked:", err);
-    });
+const music = document.getElementById('music');
+const musicToggle = document.getElementById('music-toggle');
+const musicStatus = document.getElementById('music-status');
+const profile = document.getElementById('profile');
+profile.inert = true;
+function syncMusic(){
+  const playing = !music.paused && !music.ended;
+  musicToggle.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
+  musicToggle.setAttribute('aria-pressed', String(playing));
+  document.getElementById('play-icon').toggleAttribute('hidden', playing);
+  document.getElementById('pause-icon').toggleAttribute('hidden', !playing);
 }
-
-function toggle(){
-    if(music.paused){
-        music.play();
-        btn.innerText="❚❚";
-    } else {
-        music.pause();
-        btn.innerText="▶";
-    }
+async function playMusic(){
+  musicStatus.hidden = true;
+  try { await music.play(); }
+  catch { musicStatus.textContent = 'Music couldn’t load. You can try the play button again.'; musicStatus.hidden = false; }
+  syncMusic();
 }
-
-const text="slowspan";
-const name=document.getElementById("name");
-
-[...text].forEach((c,i)=>{
-    let s=document.createElement("span");
-    s.textContent=c;
-    s.style.animationDelay=(i*0.1)+"s";
-    name.appendChild(s);
+document.getElementById('enter-button').addEventListener('click', () => {
+  document.getElementById('enter').hidden = true;
+  profile.inert = false;
+  musicToggle.focus({preventScroll:true});
+  playMusic();
 });
+musicToggle.addEventListener('click', () => { if(music.paused) playMusic(); else music.pause(); });
+['play','pause','ended'].forEach(event => music.addEventListener(event, syncMusic));
+music.addEventListener('error', () => {
+  musicStatus.textContent = 'Music is unavailable right now. Enjoy a quiet moment.';
+  musicStatus.hidden = false;
+  syncMusic();
+});
+document.getElementById('avatar').addEventListener('error', event => { event.target.hidden = true; });
+const snow = document.getElementById('snow');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  for(let i=0;i<32;i++){
+    const flake = document.createElement('span');
+    flake.className = 'flake';
+    flake.style.left = ((i * 37) % 100) + '%';
+    flake.style.animationDuration = (12 + i % 9 * 2) + 's';
+    flake.style.animationDelay = (-i * 1.7) + 's';
+    flake.style.opacity = String(.15 + i % 5 * .1);
+    snow.appendChild(flake);
+  }
+}
 </script>
-
 </body>
 </html>
