@@ -163,7 +163,7 @@ function draw(time){
    if(Math.abs(wind)>40&&Math.random()<.65){flakes[i].x=wind>0?-20:w+20;flakes[i].y=rand(-20,h*.85);}
    continue;
   }
-  ctx.globalAlpha=f.opacity;
+  ctx.globalAlpha=f.opacity;ctx.shadowBlur=0;
   if(f.kind==='crystal'){crystal(f);continue;}
   if(f.depth>.82){
    // Nearby flakes stretch slightly in the direction of a gust: snow, not glowing orbs.
@@ -174,7 +174,7 @@ function draw(time){
    ctx.fillStyle=f.depth<.28?'#dcebf5':'#f5fbff';ctx.beginPath();ctx.arc(f.x,f.y,f.radius,0,Math.PI*2);ctx.fill();
   }
  }
- ctx.globalAlpha=1;raf=requestAnimationFrame(draw);
+ ctx.globalAlpha=1;ctx.shadowBlur=0;raf=requestAnimationFrame(draw);
 }
 function start(){
  cancelAnimationFrame(raf);ctx.clearRect(0,0,w,h);
