@@ -117,73 +117,68 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 (()=>{
 const canvas=document.getElementById('snow'),ctx=canvas.getContext('2d',{alpha:true});if(!ctx)return;
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
-let w=0,h=0,dpr=1,flakes=[],raf=0,last=0;
+let w=0,h=0,dpr=1,flakes=[],raf=0,last=0,gust=0,gustTarget=0,gustClock=0,windTime=0;
 const rand=(a,b)=>a+Math.random()*(b-a);
 function flake(initial=false){
-  // Distance controls scale, transparency, fall speed and focus.
-  const z=Math.pow(Math.random(),1.35),r=.35+z*3.3;
-  return {x:rand(-20,w+20),y:initial?rand(-20,h+20):rand(-70,-r),
-    z,r,vy:10+z*57+rand(-5,6),vx:rand(-9,9),phase:rand(0,6.283),
-    sway:rand(5,24)*(0.3+z),frequency:rand(.3,.95),
-    opacity:.13+z*.76,twinkle:rand(0,6.283),angle:rand(0,6.283),spin:rand(-.7,.7),shape:Math.random()<.48?'crystal':'soft',variant:Math.floor(rand(0,3))};
+ const depth=Math.pow(Math.random(),1.55);
+ const radius=.4+depth*2.7;
+ return {x:rand(-45,w+45),y:initial?rand(-30,h+30):rand(-95,-5),
+   depth,radius,vy:13+depth*70+rand(-5,8),drift:rand(-7,7),phase:rand(0,Math.PI*2),
+   flutter:rand(1.5,8),opacity:.16+depth*.69,spin:rand(-.5,.5),
+   angle:rand(0,Math.PI*2),kind:Math.random()<.14&&depth>.64?'crystal':'flake'};
 }
 function resize(){
-  w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);
-  canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);
-  canvas.style.width=w+'px';canvas.style.height=h+'px';
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  const target=Math.min(230,Math.max(55,Math.round(w*h/5500)));
-  flakes=Array.from({length:target},()=>flake(true));
+ w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);
+ canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);
+ canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+ const target=Math.min(260,Math.max(65,Math.round(w*h/4200)));
+ flakes=Array.from({length:target},()=>flake(true));
 }
 function crystal(f){
-  // Six radial arms with two symmetric branches per arm; individual variants
-  // create recognizable snow crystals instead of identical circular particles.
-  ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.angle);
-  const size=2.1+f.z*5.4;
-  ctx.strokeStyle='#f1faff';ctx.lineWidth=Math.max(.55,.65+f.z*.3);
-  ctx.lineCap='round';ctx.beginPath();
-  for(let arm=0;arm<6;arm++){
-    const a=arm*Math.PI/3;ctx.save();ctx.rotate(a);
-    ctx.moveTo(0,0);ctx.lineTo(0,-size);
-    const tiers=f.variant===0?2:3;
-    for(let j=1;j<=tiers;j++){
-      const y=-size*(.35+j*.16),branch=size*(f.variant===2?.25:.19);
-      ctx.moveTo(-branch,y-branch*.75);ctx.lineTo(0,y);
-      ctx.lineTo(branch,y-branch*.75);
-    }
-    ctx.restore();
-  }
-  ctx.stroke();ctx.restore();
+ const size=1.8+f.depth*3.3;
+ ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.angle);
+ ctx.lineWidth=.55;ctx.strokeStyle='#f3f9ff';ctx.beginPath();
+ for(let i=0;i<6;i++){
+  const a=i*Math.PI/3;ctx.moveTo(0,0);ctx.lineTo(Math.cos(a)*size,Math.sin(a)*size);
+  const x=Math.cos(a)*size*.64,y=Math.sin(a)*size*.64;
+  for(const side of [-1,1]){const theta=a+side*.55;ctx.moveTo(x,y);ctx.lineTo(x-Math.cos(theta)*size*.25,y-Math.sin(theta)*size*.25);}
+ }
+ ctx.stroke();ctx.restore();
 }
 function draw(time){
-  const dt=Math.min((time-last)/1000||.016,.04);last=time;
-  ctx.clearRect(0,0,w,h);
-  // Slowly evolving wind gusts, rather than identical sideways movement.
-  const wind=Math.sin(time*.00017)*10+Math.sin(time*.00041)*4;
-  for(let i=0;i<flakes.length;i++){
-    const f=flakes[i];
-    f.y+=f.vy*dt;f.angle+=f.spin*dt;
-    f.x+=(f.vx+wind*(.3+f.z)+Math.sin(time*.001*f.frequency+f.phase)*f.sway*.55)*dt;
-    if(f.y>h+f.r*3||f.x>w+35||f.x< -35){flakes[i]=flake();continue;}
-    const alpha=f.opacity*(.88+.12*Math.sin(time*.0013+f.twinkle));
-    ctx.globalAlpha=alpha;
-    if(f.shape==='crystal'&&f.z>.28){crystal(f);}else if(f.z>.78){
-      // Near-camera flakes have soft out-of-focus halos.
-      const halo=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r*3);
-      halo.addColorStop(0,'rgba(247,252,255,.9)');
-      halo.addColorStop(.35,'rgba(236,248,255,.38)');
-      halo.addColorStop(1,'rgba(220,240,255,0)');
-      ctx.fillStyle=halo;ctx.beginPath();ctx.arc(f.x,f.y,f.r*3,0,Math.PI*2);ctx.fill();
-    }else{
-      ctx.fillStyle='#edf7ff';ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();
-    }
+ const dt=Math.min((time-last)/1000||.016,.045);last=time;windTime+=dt;gustClock-=dt;
+ if(gustClock<=0){gustTarget=Math.random()<.22?rand(-105,-45):rand(28,125);gustClock=rand(3.8,8.5);}
+ gust+=(gustTarget-gust)*Math.min(1,dt*.48);
+ const wind=gust+Math.sin(windTime*.85)*9+Math.sin(windTime*.29)*14;
+ ctx.clearRect(0,0,w,h);
+ for(let i=0;i<flakes.length;i++){
+  const f=flakes[i],layer=.22+f.depth*1.45;
+  const turbulence=Math.sin(windTime*(1.1+f.depth)+f.phase)*f.flutter;
+  const vx=(wind*layer+f.drift+turbulence);
+  const vy=f.vy*(1-.16*Math.min(1,Math.abs(wind)/120));
+  f.x+=vx*dt;f.y+=vy*dt;f.angle+=f.spin*dt;
+  if(f.y>h+18||f.x>w+70||f.x< -70){
+   flakes[i]=flake();
+   // During strong gusts, enter from the windward edge, at varied heights.
+   if(Math.abs(wind)>40&&Math.random()<.65){flakes[i].x=wind>0?-20:w+20;flakes[i].y=rand(-20,h*.85);}
+   continue;
   }
-  ctx.globalAlpha=1;
-  raf=requestAnimationFrame(draw);
+  ctx.globalAlpha=f.opacity;
+  if(f.kind==='crystal'){crystal(f);continue;}
+  if(f.depth>.82){
+   // Nearby flakes stretch slightly in the direction of a gust: snow, not glowing orbs.
+   const len=1+Math.min(2.6,Math.abs(vx)/55);
+   ctx.save();ctx.translate(f.x,f.y);ctx.rotate(Math.atan2(vy,vx)+Math.PI/2);
+   ctx.fillStyle='#f2f7fa';ctx.beginPath();ctx.ellipse(0,0,f.radius*.72,f.radius*len,0,0,Math.PI*2);ctx.fill();ctx.restore();
+  }else{
+   ctx.fillStyle=f.depth<.28?'#cbd9e2':'#f0f6fa';ctx.beginPath();ctx.arc(f.x,f.y,f.radius,0,Math.PI*2);ctx.fill();
+  }
+ }
+ ctx.globalAlpha=1;raf=requestAnimationFrame(draw);
 }
 function start(){
-  cancelAnimationFrame(raf);ctx.clearRect(0,0,w,h);
-  if(!motion.matches&&!document.hidden){last=0;raf=requestAnimationFrame(draw);}
+ cancelAnimationFrame(raf);ctx.clearRect(0,0,w,h);
+ if(!motion.matches&&!document.hidden){last=0;raf=requestAnimationFrame(draw);}
 }
 let resizeTimer;
 addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{resize();start();},120);},{passive:true});
