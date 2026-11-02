@@ -52,7 +52,7 @@ function flake(initial=false){
   return {x:rand(-20,w+20),y:initial?rand(-20,h+20):rand(-70,-r),
     z,r,vy:10+z*57+rand(-5,6),vx:rand(-9,9),phase:rand(0,6.283),
     sway:rand(5,24)*(0.3+z),frequency:rand(.3,.95),
-    opacity:.13+z*.76,twinkle:rand(0,6.283)};
+    opacity:.13+z*.76,twinkle:rand(0,6.283),angle:rand(0,6.283),spin:rand(-.7,.7),shape:Math.random()<.48?'crystal':'soft',variant:Math.floor(rand(0,3))};
 }
 function resize(){
   w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);
@@ -62,6 +62,26 @@ function resize(){
   const target=Math.min(230,Math.max(55,Math.round(w*h/5500)));
   flakes=Array.from({length:target},()=>flake(true));
 }
+function crystal(f){
+  // Six radial arms with two symmetric branches per arm; individual variants
+  // create recognizable snow crystals instead of identical circular particles.
+  ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.angle);
+  const size=2.1+f.z*5.4;
+  ctx.strokeStyle='#f1faff';ctx.lineWidth=Math.max(.55,.65+f.z*.3);
+  ctx.lineCap='round';ctx.beginPath();
+  for(let arm=0;arm<6;arm++){
+    const a=arm*Math.PI/3;ctx.save();ctx.rotate(a);
+    ctx.moveTo(0,0);ctx.lineTo(0,-size);
+    const tiers=f.variant===0?2:3;
+    for(let j=1;j<=tiers;j++){
+      const y=-size*(.35+j*.16),branch=size*(f.variant===2?.25:.19);
+      ctx.moveTo(-branch,y-branch*.75);ctx.lineTo(0,y);
+      ctx.lineTo(branch,y-branch*.75);
+    }
+    ctx.restore();
+  }
+  ctx.stroke();ctx.restore();
+}
 function draw(time){
   const dt=Math.min((time-last)/1000||.016,.04);last=time;
   ctx.clearRect(0,0,w,h);
@@ -69,12 +89,12 @@ function draw(time){
   const wind=Math.sin(time*.00017)*10+Math.sin(time*.00041)*4;
   for(let i=0;i<flakes.length;i++){
     const f=flakes[i];
-    f.y+=f.vy*dt;
+    f.y+=f.vy*dt;f.angle+=f.spin*dt;
     f.x+=(f.vx+wind*(.3+f.z)+Math.sin(time*.001*f.frequency+f.phase)*f.sway*.55)*dt;
     if(f.y>h+f.r*3||f.x>w+35||f.x< -35){flakes[i]=flake();continue;}
     const alpha=f.opacity*(.88+.12*Math.sin(time*.0013+f.twinkle));
     ctx.globalAlpha=alpha;
-    if(f.z>.78){
+    if(f.shape==='crystal'&&f.z>.28){crystal(f);}else if(f.z>.78){
       // Near-camera flakes have soft out-of-focus halos.
       const halo=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r*3);
       halo.addColorStop(0,'rgba(247,252,255,.9)');
