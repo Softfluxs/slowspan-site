@@ -86,13 +86,6 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 @keyframes garland-detail{0%,100%{transform:translateY(0)}50%{transform:translateY(.7px)}}
 @media(prefers-reduced-motion:reduce){.garland-frame .foliage-layer,.garland-frame .decor-layer{animation:none!important}}
 
-/* A soft knitted winter scarf sits outside the circular profile photo. */
-.avatar-wrap{position:relative;width:148px;height:146px;margin:0 auto 5px;display:grid;place-items:center;isolation:isolate}
-.avatar-wrap .avatar{margin:0;position:relative;z-index:1}
-.avatar-scarf{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;filter:drop-shadow(0 3px 3px #0005);animation:scarf-settle 5s ease-in-out infinite}
-@keyframes scarf-settle{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@media(prefers-reduced-motion:reduce){.avatar-scarf{animation:none}}
-
 /* Small winter snowman perched beside the animated username. */
 .profile h1{position:relative;display:flex!important;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
 .profile h1 .username-snowman{display:inline-flex;flex:none;width:31px;height:44px;align-items:flex-end;transform-origin:center bottom;animation:snowman-wobble 5s ease-in-out infinite}
