@@ -42,14 +42,61 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 </section></main>
 <script>
 (()=>{
-const canvas=document.getElementById('snow'),ctx=canvas.getContext('2d');if(!ctx)return;
-const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');let flakes=[],w=0,h=0,dpr=1,raf=0,last=0;
+const canvas=document.getElementById('snow'),ctx=canvas.getContext('2d',{alpha:true});if(!ctx)return;
+const motion=matchMedia('(prefers-reduced-motion: reduce)');
+let w=0,h=0,dpr=1,flakes=[],raf=0,last=0;
 const rand=(a,b)=>a+Math.random()*(b-a);
-function resize(){w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(190,Math.max(35,Math.round(w*h/8000)));flakes=Array.from({length:count},()=>make(true));}
-function make(randomY){const depth=Math.random();return{x:rand(0,w),y:randomY?rand(0,h):rand(-40,-5),r:rand(.6,2.2)+depth*1.6,speed:15+depth*50,drift:rand(-8,8),phase:rand(0,Math.PI*2),depth,alpha:.22+depth*.65};}
-function frame(t){if(reduce.matches)return;const dt=Math.min((t-last)/1000||.016,.05);last=t;ctx.clearRect(0,0,w,h);for(let i=0;i<flakes.length;i++){const f=flakes[i];f.y+=f.speed*dt;f.x+=(f.drift+Math.sin(t*.00055+f.phase)*11)*dt;if(f.y>h+10){flakes[i]=make(false);continue;}if(f.x<-15)f.x=w+10;if(f.x>w+15)f.x=-10;ctx.beginPath();ctx.fillStyle='rgba(238,248,255,'+f.alpha+')';ctx.shadowBlur=f.depth>.65?5:0;ctx.shadowColor='#d7eeff';ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();}ctx.shadowBlur=0;raf=requestAnimationFrame(frame);}
-function start(){cancelAnimationFrame(raf);ctx.clearRect(0,0,w,h);if(!reduce.matches){last=0;raf=requestAnimationFrame(frame);}}
-window.addEventListener('resize',()=>{resize();start();},{passive:true});reduce.addEventListener('change',start);document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else start();});resize();start();
+function flake(initial=false){
+  // Distance controls scale, transparency, fall speed and focus.
+  const z=Math.pow(Math.random(),1.35),r=.35+z*3.3;
+  return {x:rand(-20,w+20),y:initial?rand(-20,h+20):rand(-70,-r),
+    z,r,vy:10+z*57+rand(-5,6),vx:rand(-9,9),phase:rand(0,6.283),
+    sway:rand(5,24)*(0.3+z),frequency:rand(.3,.95),
+    opacity:.13+z*.76,twinkle:rand(0,6.283)};
+}
+function resize(){
+  w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);
+  canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);
+  canvas.style.width=w+'px';canvas.style.height=h+'px';
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const target=Math.min(230,Math.max(55,Math.round(w*h/5500)));
+  flakes=Array.from({length:target},()=>flake(true));
+}
+function draw(time){
+  const dt=Math.min((time-last)/1000||.016,.04);last=time;
+  ctx.clearRect(0,0,w,h);
+  // Slowly evolving wind gusts, rather than identical sideways movement.
+  const wind=Math.sin(time*.00017)*10+Math.sin(time*.00041)*4;
+  for(let i=0;i<flakes.length;i++){
+    const f=flakes[i];
+    f.y+=f.vy*dt;
+    f.x+=(f.vx+wind*(.3+f.z)+Math.sin(time*.001*f.frequency+f.phase)*f.sway*.55)*dt;
+    if(f.y>h+f.r*3||f.x>w+35||f.x< -35){flakes[i]=flake();continue;}
+    const alpha=f.opacity*(.88+.12*Math.sin(time*.0013+f.twinkle));
+    ctx.globalAlpha=alpha;
+    if(f.z>.78){
+      // Near-camera flakes have soft out-of-focus halos.
+      const halo=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r*3);
+      halo.addColorStop(0,'rgba(247,252,255,.9)');
+      halo.addColorStop(.35,'rgba(236,248,255,.38)');
+      halo.addColorStop(1,'rgba(220,240,255,0)');
+      ctx.fillStyle=halo;ctx.beginPath();ctx.arc(f.x,f.y,f.r*3,0,Math.PI*2);ctx.fill();
+    }else{
+      ctx.fillStyle='#edf7ff';ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();
+    }
+  }
+  ctx.globalAlpha=1;
+  raf=requestAnimationFrame(draw);
+}
+function start(){
+  cancelAnimationFrame(raf);ctx.clearRect(0,0,w,h);
+  if(!motion.matches&&!document.hidden){last=0;raf=requestAnimationFrame(draw);}
+}
+let resizeTimer;
+addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{resize();start();},120);},{passive:true});
+motion.addEventListener('change',start);
+document.addEventListener('visibilitychange',start);
+resize();start();
 })();
 </script>
 </body></html>
