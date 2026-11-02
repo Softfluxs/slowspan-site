@@ -18,7 +18,7 @@ body:has(.background-video) .scene .moon,body:has(.background-video) .scene .sta
 .trees{position:absolute;bottom:11vh;left:0;width:100%;height:31vh;opacity:.7;background:linear-gradient(150deg,transparent 45%,#071c23 45% 55%,transparent 55%) 0 0/110px 100%,linear-gradient(210deg,transparent 45%,#071c23 45% 55%,transparent 55%) 0 0/110px 100%;clip-path:polygon(0 100%,0 45%,5% 10%,10% 65%,15% 18%,20% 67%,25% 4%,31% 73%,36% 25%,41% 65%,47% 10%,52% 72%,59% 16%,65% 70%,71% 8%,77% 66%,83% 19%,90% 65%,96% 8%,100% 55%,100% 100%)}
 #snow{position:fixed;inset:0;pointer-events:none;z-index:1}
 main{position:relative;min-height:100svh;display:grid;place-items:center;padding:70px 20px;isolation:isolate}
-.profile{width:min(100%,440px);text-align:center;padding:42px 32px 34px;border:1px solid #e0f3ff38;border-radius:28px;background:linear-gradient(140deg,#19354cbd,#0b192ac9);box-shadow:0 25px 85px #0008,inset 0 1px #ffffff2a;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden}
+.profile{width:min(100%,440px);text-align:center;padding:42px 32px 34px;border:1px solid #e0f3ff38;border-radius:28px;background:linear-gradient(140deg,#19354c70,#0b192a85);box-shadow:0 25px 85px #0005,inset 0 1px #ffffff12;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);position:relative;overflow:hidden}
 .lights{position:absolute;top:0;left:0;right:0;height:35px;display:flex;justify-content:space-around;border-top:0;border-radius:0}
 .bulb{width:9px;height:14px;border-radius:50% 50% 55% 55%;background:var(--c);box-shadow:0 0 12px 3px var(--c);transform:translateY(8px);animation:twinkle 2.6s ease-in-out infinite alternate;animation-delay:var(--d)}
 @keyframes twinkle{to{opacity:.4;filter:brightness(.7)}}.avatar{margin:12px auto 17px;width:100px;height:100px;border-radius:50%;display:grid;place-items:center;font-size:43px;font-weight:750;background:linear-gradient(145deg,#527b95,#182f46);border:3px solid #e0f4ffb3;box-shadow:0 0 0 6px #e2f4ff15,0 12px 35px #0006}
@@ -49,16 +49,17 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 @keyframes name-shimmer{to{background-position:230% center}}
 @media(prefers-reduced-motion:reduce){.avatar,.profile h1{animation:none!important}}
 .profile h1 .moving-letter{display:inline-block;position:relative;will-change:transform;animation:letter-wave 2.4s ease-in-out infinite;animation-delay:calc(var(--i) * -.15s)}
-@keyframes letter-wave{0%,100%{transform:translateY(0)}25%{transform:translateY(-9px)}50%{transform:translateY(0)}75%{transform:translateY(5px)}}
+@keyframes letter-wave{0%,100%{transform:translate3d(0,0,0)}25%{transform:translate3d(0,-5px,0)}50%{transform:translate3d(0,0,0)}75%{transform:translate3d(0,3px,0)}}
 @media(prefers-reduced-motion:reduce){.profile h1 .moving-letter{animation:none!important}}
 /* Keep the username on its own row and paint each animated glyph independently. */
 .profile h1{display:block;width:100%;max-width:100%;margin:12px auto 12px;line-height:1.35;white-space:nowrap;background:none!important;background-clip:border-box!important;-webkit-background-clip:border-box!important;color:#eaf6ff!important;animation:name-arrive .9s ease-out both!important;overflow:visible}
-.profile h1 .moving-letter{display:inline-block;vertical-align:baseline;color:#eaf6ff!important;-webkit-text-fill-color:#eaf6ff;background:none!important;text-shadow:0 1px 12px #9fd4f344;animation:letter-wave 2.4s ease-in-out infinite!important;animation-delay:calc(var(--i) * -.15s)!important}
+.profile h1 .moving-letter{display:inline-block;vertical-align:baseline;color:#eaf6ff!important;-webkit-text-fill-color:#eaf6ff;background:none!important;text-shadow:0 1px 12px #9fd4f344;animation:letter-wave 3.6s ease-in-out infinite!important;animation-delay:calc(var(--i) * -.16s)!important}
 .profile .status{display:flex;width:max-content;max-width:100%;justify-content:center;margin:0 auto 24px;clear:both}
 @media(max-width:380px){.profile h1{font-size:clamp(29px,8vw,38px)}}
 @media(prefers-reduced-motion:reduce){.profile h1,.profile h1 .moving-letter{animation:none!important}}
 /* Accessible, cinematic Slowspan entrance */
-.entrance{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:#071422;transition:opacity .8s ease,visibility .8s ease}
+.entrance{outline:none!important;-webkit-tap-highlight-color:transparent;appearance:none;-webkit-appearance:none;position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:#071422;transition:opacity .8s ease,visibility .8s ease}
+.entrance:focus,.entrance:focus-visible{outline:none!important;box-shadow:none!important;border:0!important}
 .entrance-inner{position:relative;text-align:center;animation:entrance-rise 1.3s cubic-bezier(.2,.8,.2,1) both}
 .entrance-monogram{font-family:Georgia,serif;font-size:clamp(110px,30vw,190px);font-weight:700;line-height:1;color:#e9f8ff;text-shadow:none;animation:none}
 .entrance-subtitle{margin-top:14px;color:#a7c4d8;letter-spacing:.12em;font-size:11px}
@@ -75,7 +76,6 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 <div class="scene" aria-hidden="true"><div class="stars"></div><div class="moon"></div><div class="trees"></div><div class="hills"></div></div>
 <canvas id="snow" aria-hidden="true"></canvas>
 <main><section class="profile" aria-label="Personal profile">
-<div class="lights" aria-hidden="true"><i class="bulb" style="--c:#ffbc86;--d:0s"></i><i class="bulb" style="--c:#9be5cd;--d:.4s"></i><i class="bulb" style="--c:#f5a4a7;--d:.8s"></i><i class="bulb" style="--c:#ffe5a1;--d:1.2s"></i><i class="bulb" style="--c:#a4d9ff;--d:1.6s"></i><i class="bulb" style="--c:#ffbc86;--d:2s"></i></div>
 <div class="avatar" aria-label="Slowspan profile picture"><img src="assets/9073a5a464bc74ceed351f31deb38de2%20(1).jpg" alt="Orange cat wearing a Santa hat and holding a mug" loading="eager" decoding="async" onerror="this.hidden=true;this.parentElement.classList.add('avatar-fallback')"><span class="avatar-initial" aria-hidden="true">S</span></div>
 <div class="eyebrow">A little corner of winter</div><h1 aria-label="Slowspan"><span aria-hidden="true" class="moving-letter" style="--i:0">S</span><span aria-hidden="true" class="moving-letter" style="--i:1">l</span><span aria-hidden="true" class="moving-letter" style="--i:2">o</span><span aria-hidden="true" class="moving-letter" style="--i:3">w</span><span aria-hidden="true" class="moving-letter" style="--i:4">s</span><span aria-hidden="true" class="moving-letter" style="--i:5">p</span><span aria-hidden="true" class="moving-letter" style="--i:6">a</span><span aria-hidden="true" class="moving-letter" style="--i:7">n</span></h1>
 <div class="status"><span class="dot"></span>Enjoying winter nights</div>
@@ -167,7 +167,7 @@ resize();start();
 const entrance=document.getElementById('entrance');
 function dismissEntrance(){entrance.classList.add('dismissed');entrance.addEventListener('transitionend',()=>entrance.remove(),{once:true});}
 entrance.addEventListener('click',()=>{tryPlay();dismissEntrance();});
-entrance.focus({preventScroll:true});
+
 const holidayAudio=document.getElementById('holiday-audio');
 const musicToggle=document.getElementById('music-toggle');
 const musicNotice=document.getElementById('music-notice');
