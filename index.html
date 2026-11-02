@@ -24,6 +24,14 @@ main{position:relative;min-height:100svh;display:grid;place-items:center;padding
 @keyframes twinkle{to{opacity:.4;filter:brightness(.7)}}.avatar{margin:12px auto 17px;width:100px;height:100px;border-radius:50%;display:grid;place-items:center;font-size:43px;font-weight:750;background:linear-gradient(145deg,#527b95,#182f46);border:3px solid #e0f4ffb3;box-shadow:0 0 0 6px #e2f4ff15,0 12px 35px #0006}
 .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:11px;font-weight:700;color:var(--gold)}h1{font-size:clamp(32px,7vw,43px);letter-spacing:-.05em;margin:9px 0 6px}p{color:var(--muted);line-height:1.65;margin:0 auto 24px;max-width:310px}.status{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid #c7e5fa33;border-radius:99px;font-size:12px;color:#cce6f5;margin-bottom:24px}.dot{width:7px;height:7px;border-radius:50%;background:#a5e7c5;box-shadow:0 0 9px #a5e7c5}
 .links{display:grid;gap:11px}.links a{display:flex;justify-content:center;align-items:center;min-height:49px;text-decoration:none;color:#edf7ff;font-weight:650;background:#d8f0ff12;border:1px solid #d8f0ff38;border-radius:13px;transition:transform .2s,background .2s,border-color .2s}.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:#d8f0ff25;border-color:#e6f5ff99;outline:none}
+.music-player{margin:0 auto 23px;padding:16px;text-align:left;border:1px solid #d8f0ff36;border-radius:18px;background:#d8f0ff0c;box-shadow:inset 0 1px #ffffff14}
+.music-heading{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.music-art{display:grid;place-items:center;flex:none;width:43px;height:43px;border-radius:12px;background:linear-gradient(145deg,#3d6e7a,#153449);font-size:23px}
+.music-details{min-width:0;flex:1}.music-details strong{display:block;font-size:14px;color:#f1f9ff}.music-details small{font-size:11px;color:#a8c4d6}
+.music-toggle{width:42px;height:42px;flex:none;border:1px solid #d8f0ff55;border-radius:50%;background:#e3f4ff;color:#11263b;font-size:18px;cursor:pointer}
+.music-progress{width:100%;height:5px;accent-color:#d9f2ff;cursor:pointer}
+.music-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;color:#b2cbd9;font-size:11px}
+.music-volume{width:77px;accent-color:#d9f2ff}.music-notice{font-size:11px;color:#ffe1a9;margin:8px 0 0;line-height:1.4}
 footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 @media(max-width:480px){.profile{padding:36px 23px 27px}.moon{right:9%;width:70px}}
 @media(prefers-reduced-motion:reduce){.background-video{display:none}.scene{background:radial-gradient(ellipse at 50% 5%,#294661 0%,#10253b 43%,#06111e 100%)!important}.scene .moon,.scene .stars,.scene .trees,.scene .hills{opacity:1!important}*,*:before,*:after{animation:none!important;transition:none!important}}
@@ -39,6 +47,14 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 <div class="eyebrow">A little corner of winter</div><h1>Slowspan</h1>
 <p>Welcome to my little corner of the internet. Stay warm, and enjoy the snow. ❄</p>
 <div class="status"><span class="dot"></span>Enjoying winter nights</div>
+<section class="music-player" aria-label="Christmas music player">
+<audio id="holiday-audio" preload="metadata" loop src="assets/single-last-christmas.mp3"></audio>
+<div class="music-heading"><div class="music-art" aria-hidden="true">♫</div><div class="music-details"><strong>Last Christmas</strong><small>Holiday soundtrack</small></div>
+<button class="music-toggle" id="music-toggle" type="button" aria-label="Play music">▶</button></div>
+<input class="music-progress" id="music-progress" type="range" min="0" max="100" value="0" step=".1" aria-label="Seek through song">
+<div class="music-meta"><span id="music-time">0:00 / 0:00</span><label for="music-volume">Volume <input class="music-volume" id="music-volume" type="range" min="0" max="1" step=".05" value=".6"></label></div>
+<p class="music-notice" id="music-notice" hidden>Tap play to start the music — your browser blocks automatic sound.</p>
+</section>
 <nav class="links" aria-label="Profile links">
 <a href="https://github.com/Softfluxs" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 <!-- Add existing social links here when available. -->
@@ -123,6 +139,28 @@ motion.addEventListener('change',start);
 document.addEventListener('visibilitychange',start);
 resize();start();
 })();
+const holidayAudio=document.getElementById('holiday-audio');
+const musicToggle=document.getElementById('music-toggle');
+const musicProgress=document.getElementById('music-progress');
+const musicTime=document.getElementById('music-time');
+const musicVolume=document.getElementById('music-volume');
+const musicNotice=document.getElementById('music-notice');
+holidayAudio.volume=.6;
+const fmt=s=>{if(!Number.isFinite(s))return '0:00';return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');};
+function updateMusic(){
+ const playing=!holidayAudio.paused;
+ musicToggle.textContent=playing?'❚❚':'▶';
+ musicToggle.setAttribute('aria-label',playing?'Pause music':'Play music');
+ musicProgress.value=holidayAudio.duration?holidayAudio.currentTime/holidayAudio.duration*100:0;
+ musicTime.textContent=fmt(holidayAudio.currentTime)+' / '+fmt(holidayAudio.duration);
+ if(playing)musicNotice.hidden=true;
+}
+async function tryPlay(){try{await holidayAudio.play();musicNotice.hidden=true;}catch(e){musicNotice.hidden=false;}updateMusic();}
+musicToggle.addEventListener('click',()=>{if(holidayAudio.paused)tryPlay();else holidayAudio.pause();});
+musicVolume.addEventListener('input',()=>{holidayAudio.volume=Number(musicVolume.value);});
+musicProgress.addEventListener('input',()=>{if(Number.isFinite(holidayAudio.duration)&&holidayAudio.duration>0)holidayAudio.currentTime=Number(musicProgress.value)/100*holidayAudio.duration;});
+['play','pause','timeupdate','loadedmetadata','ended'].forEach(name=>holidayAudio.addEventListener(name,updateMusic));
+window.addEventListener('load',tryPlay,{once:true});
 const backgroundVideo=document.querySelector('.background-video');
 if(matchMedia('(prefers-reduced-motion: reduce)').matches)backgroundVideo.pause();
 </script>
