@@ -1,1 +1,55 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071422"><meta name="description" content="Slowspan — a cozy winter profile.">
+<title>Slowspan · Winter Nights</title>
+<style>
+:root{color-scheme:dark;--ice:#dbeefa;--muted:#a6bdcf;--gold:#ffdba3}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}body{color:var(--ice);background:#071422;overflow-x:hidden}
+.scene{position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 50% 5%,#294661 0%,#10253b 43%,#06111e 100%)}
+.moon{position:absolute;top:9%;right:17%;width:105px;aspect-ratio:1;border-radius:50%;background:#e7f4ff;box-shadow:0 0 35px #c6e8ff80,0 0 130px #a5d4ff4a}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 12%,#fff 99%,transparent),radial-gradient(2px 2px at 28% 30%,#fff9 99%,transparent),radial-gradient(1px 1px at 73% 18%,#fff 99%,transparent),radial-gradient(2px 2px at 91% 38%,#fff9 99%,transparent);background-size:340px 260px;opacity:.7}
+.hills{position:absolute;bottom:-10vh;left:-10%;width:120%;height:32vh;background:linear-gradient(#b6d4e5,#789bb7);border-radius:50% 50% 0 0/80% 80% 0 0;filter:brightness(.55)}
+.trees{position:absolute;bottom:11vh;left:0;width:100%;height:31vh;opacity:.7;background:linear-gradient(150deg,transparent 45%,#071c23 45% 55%,transparent 55%) 0 0/110px 100%,linear-gradient(210deg,transparent 45%,#071c23 45% 55%,transparent 55%) 0 0/110px 100%;clip-path:polygon(0 100%,0 45%,5% 10%,10% 65%,15% 18%,20% 67%,25% 4%,31% 73%,36% 25%,41% 65%,47% 10%,52% 72%,59% 16%,65% 70%,71% 8%,77% 66%,83% 19%,90% 65%,96% 8%,100% 55%,100% 100%)}
+#snow{position:fixed;inset:0;pointer-events:none;z-index:1}
+main{position:relative;min-height:100svh;display:grid;place-items:center;padding:70px 20px;isolation:isolate}
+.profile{width:min(100%,440px);text-align:center;padding:42px 32px 34px;border:1px solid #e0f3ff38;border-radius:28px;background:linear-gradient(140deg,#19354cbd,#0b192ac9);box-shadow:0 25px 85px #0008,inset 0 1px #ffffff2a;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden}
+.lights{position:absolute;top:0;left:0;right:0;height:35px;display:flex;justify-content:space-around;border-top:2px solid #9ab7b9a6;border-radius:50%}
+.bulb{width:9px;height:14px;border-radius:50% 50% 55% 55%;background:var(--c);box-shadow:0 0 12px 3px var(--c);transform:translateY(8px);animation:twinkle 2.6s ease-in-out infinite alternate;animation-delay:var(--d)}
+@keyframes twinkle{to{opacity:.4;filter:brightness(.7)}}.avatar{margin:12px auto 17px;width:100px;height:100px;border-radius:50%;display:grid;place-items:center;font-size:43px;font-weight:750;background:linear-gradient(145deg,#527b95,#182f46);border:3px solid #e0f4ffb3;box-shadow:0 0 0 6px #e2f4ff15,0 12px 35px #0006}
+.eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:11px;font-weight:700;color:var(--gold)}h1{font-size:clamp(32px,7vw,43px);letter-spacing:-.05em;margin:9px 0 6px}p{color:var(--muted);line-height:1.65;margin:0 auto 24px;max-width:310px}.status{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid #c7e5fa33;border-radius:99px;font-size:12px;color:#cce6f5;margin-bottom:24px}.dot{width:7px;height:7px;border-radius:50%;background:#a5e7c5;box-shadow:0 0 9px #a5e7c5}
+.links{display:grid;gap:11px}.links a{display:flex;justify-content:center;align-items:center;min-height:49px;text-decoration:none;color:#edf7ff;font-weight:650;background:#d8f0ff12;border:1px solid #d8f0ff38;border-radius:13px;transition:transform .2s,background .2s,border-color .2s}.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:#d8f0ff25;border-color:#e6f5ff99;outline:none}
+footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
+@media(max-width:480px){.profile{padding:36px 23px 27px}.moon{right:9%;width:70px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="scene" aria-hidden="true"><div class="stars"></div><div class="moon"></div><div class="trees"></div><div class="hills"></div></div>
+<canvas id="snow" aria-hidden="true"></canvas>
+<main><section class="profile" aria-label="Personal profile">
+<div class="lights" aria-hidden="true"><i class="bulb" style="--c:#ffbc86;--d:0s"></i><i class="bulb" style="--c:#9be5cd;--d:.4s"></i><i class="bulb" style="--c:#f5a4a7;--d:.8s"></i><i class="bulb" style="--c:#ffe5a1;--d:1.2s"></i><i class="bulb" style="--c:#a4d9ff;--d:1.6s"></i><i class="bulb" style="--c:#ffbc86;--d:2s"></i></div>
+<div class="avatar" aria-label="Slowspan avatar">S</div>
+<div class="eyebrow">A little corner of winter</div><h1>Slowspan</h1>
+<p>Welcome to my little corner of the internet. Stay warm, and enjoy the snow. ❄</p>
+<div class="status"><span class="dot"></span>Enjoying winter nights</div>
+<nav class="links" aria-label="Profile links">
+<a href="https://github.com/Softfluxs" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+<!-- Add existing social links here when available. -->
+</nav>
+<footer>Made with <span>♥</span> under the winter sky</footer>
+</section></main>
+<script>
+(()=>{
+const canvas=document.getElementById('snow'),ctx=canvas.getContext('2d');if(!ctx)return;
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');let flakes=[],w=0,h=0,dpr=1,raf=0,last=0;
+const rand=(a,b)=>a+Math.random()*(b-a);
+function resize(){w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const count=Math.min(190,Math.max(35,Math.round(w*h/8000)));flakes=Array.from({length:count},()=>make(true));}
+function make(randomY){const depth=Math.random();return{x:rand(0,w),y:randomY?rand(0,h):rand(-40,-5),r:rand(.6,2.2)+depth*1.6,speed:15+depth*50,drift:rand(-8,8),phase:rand(0,Math.PI*2),depth,alpha:.22+depth*.65};}
+function frame(t){if(reduce.matches)return;const dt=Math.min((t-last)/1000||.016,.05);last=t;ctx.clearRect(0,0,w,h);for(let i=0;i<flakes.length;i++){const f=flakes[i];f.y+=f.speed*dt;f.x+=(f.drift+Math.sin(t*.00055+f.phase)*11)*dt;if(f.y>h+10){flakes[i]=make(false);continue;}if(f.x<-15)f.x=w+10;if(f.x>w+15)f.x=-10;ctx.beginPath();ctx.fillStyle='rgba(238,248,255,'+f.alpha+')';ctx.shadowBlur=f.depth>.65?5:0;ctx.shadowColor='#d7eeff';ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();}ctx.shadowBlur=0;raf=requestAnimationFrame(frame);}
+function start(){cancelAnimationFrame(raf);ctx.clearRect(0,0,w,h);if(!reduce.matches){last=0;raf=requestAnimationFrame(frame);}}
+window.addEventListener('resize',()=>{resize();start();},{passive:true});reduce.addEventListener('change',start);document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else start();});resize();start();
+})();
+</script>
+</body></html>
