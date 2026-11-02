@@ -45,18 +45,18 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 .entrance-subtitle{margin-top:12px;color:#a7c4d8;letter-spacing:.12em;font-size:11px}
 .entrance-spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#e7f8ff;box-shadow:0 0 10px #e7f8ff;animation:entrance-drift var(--dur) linear infinite;left:var(--x);top:110%;opacity:0}
 .entrance.dismissed{opacity:0;visibility:hidden;pointer-events:none}
-.entrance-skip{position:absolute;bottom:max(26px,env(safe-area-inset-bottom));right:24px;border:1px solid #d8efff55;border-radius:999px;background:#17344caa;color:#e6f5ff;padding:9px 17px;cursor:pointer;font:inherit;font-size:12px}
+.entrance-skip{position:relative;margin-top:28px;border:1px solid #d8efff55;border-radius:999px;background:#17344caa;color:#e6f5ff;padding:9px 17px;cursor:pointer;font:inherit;font-size:12px}
 @keyframes entrance-rise{from{opacity:0;transform:translateY(30px) scale(.86);filter:blur(9px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes entrance-glow{to{text-shadow:0 0 20px #fff,0 0 65px #a4e2ff,0 0 110px #77bfff}}
 @keyframes entrance-aura{to{transform:rotate(360deg)}}
 @keyframes entrance-drift{10%{opacity:.8}85%{opacity:.65}100%{transform:translate3d(var(--drift),-120vh,0);opacity:0}}
-@media(prefers-reduced-motion:reduce){.entrance{display:none!important}}
+@media(prefers-reduced-motion:reduce){.entrance:before,.entrance-inner,.entrance-spark,.entrance-monogram{animation:none!important}}
 </style>
 </head>
 <body>
-<div class="entrance" id="entrance" role="presentation" aria-label="Slowspan loading animation">
+<div class="entrance" id="entrance" role="dialog" aria-modal="true" aria-label="Enter Slowspan">
 <div class="entrance-inner"><div class="entrance-monogram" aria-hidden="true">S</div><div class="entrance-name">Slowspan</div><div class="entrance-subtitle">A little corner of winter</div></div>
-<button class="entrance-skip" id="entrance-skip" type="button">Skip intro</button>
+<button class="entrance-skip" id="entrance-skip" type="button">Enter Slowspan</button>
 </div>
 <video class="background-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" poster=""><source src="assets/slowspan-winter-background.mp4" type="video/mp4"></video><div class="video-shade" aria-hidden="true"></div>
 <div class="scene" aria-hidden="true"><div class="stars"></div><div class="moon"></div><div class="trees"></div><div class="hills"></div></div>
@@ -161,14 +161,13 @@ resize();start();
 })();
 const entrance=document.getElementById('entrance');
 const skipEntrance=document.getElementById('entrance-skip');
-let entranceTimer;
-function dismissEntrance(){clearTimeout(entranceTimer);entrance.classList.add('dismissed');entrance.addEventListener('transitionend',()=>entrance.remove(),{once:true});}
-skipEntrance.addEventListener('click',dismissEntrance);
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){entrance.remove();}
-else{
+function dismissEntrance(){entrance.classList.add('dismissed');entrance.addEventListener('transitionend',()=>entrance.remove(),{once:true});}
+skipEntrance.addEventListener('click',()=>{tryPlay();dismissEntrance();});
+skipEntrance.focus({preventScroll:true});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
  const fragment=document.createDocumentFragment();
  for(let i=0;i<30;i++){const star=document.createElement('i');star.className='entrance-spark';star.style.setProperty('--x',(Math.random()*100)+'%');star.style.setProperty('--dur',(2+Math.random()*3)+'s');star.style.setProperty('--drift',((Math.random()-.5)*150)+'px');star.style.animationDelay=(-Math.random()*4)+'s';fragment.appendChild(star);}
- entrance.appendChild(fragment);entranceTimer=setTimeout(dismissEntrance,2800);
+ entrance.appendChild(fragment);
 }
 const holidayAudio=document.getElementById('holiday-audio');
 const musicToggle=document.getElementById('music-toggle');
@@ -191,7 +190,7 @@ musicToggle.addEventListener('click',()=>{if(holidayAudio.paused)tryPlay();else 
 musicVolume.addEventListener('input',()=>{holidayAudio.volume=Number(musicVolume.value);});
 musicProgress.addEventListener('input',()=>{if(Number.isFinite(holidayAudio.duration)&&holidayAudio.duration>0)holidayAudio.currentTime=Number(musicProgress.value)/100*holidayAudio.duration;});
 ['play','pause','timeupdate','loadedmetadata','ended'].forEach(name=>holidayAudio.addEventListener(name,updateMusic));
-window.addEventListener('load',tryPlay,{once:true});
+// Music starts only when the visitor taps Enter or Play.
 const backgroundVideo=document.querySelector('.background-video');
 if(matchMedia('(prefers-reduced-motion: reduce)').matches)backgroundVideo.pause();
 </script>
