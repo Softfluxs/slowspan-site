@@ -121,23 +121,23 @@ let w=0,h=0,dpr=1,flakes=[],raf=0,last=0,gust=0,gustTarget=0,gustClock=0,windTim
 const rand=(a,b)=>a+Math.random()*(b-a);
 function flake(initial=false){
  const depth=Math.pow(Math.random(),1.55);
- const radius=.4+depth*2.7;
+ const radius=.55+depth*3.0;
  return {x:rand(-45,w+45),y:initial?rand(-30,h+30):rand(-95,-5),
    depth,radius,vy:13+depth*70+rand(-5,8),drift:rand(-7,7),phase:rand(0,Math.PI*2),
-   flutter:rand(1.5,8),opacity:.16+depth*.69,spin:rand(-.5,.5),
-   angle:rand(0,Math.PI*2),kind:Math.random()<.14&&depth>.64?'crystal':'flake'};
+   flutter:rand(1.5,8),opacity:.27+depth*.68,spin:rand(-.5,.5),
+   angle:rand(0,Math.PI*2),kind:Math.random()<.21&&depth>.55?'crystal':'flake'};
 }
 function resize(){
  w=innerWidth;h=innerHeight;dpr=Math.min(devicePixelRatio||1,2);
  canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);
  canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
- const target=Math.min(260,Math.max(65,Math.round(w*h/4200)));
+ const target=Math.min(320,Math.max(85,Math.round(w*h/3300)));
  flakes=Array.from({length:target},()=>flake(true));
 }
 function crystal(f){
- const size=1.8+f.depth*3.3;
+ const size=2.1+f.depth*3.7;
  ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.angle);
- ctx.lineWidth=.55;ctx.strokeStyle='#f3f9ff';ctx.beginPath();
+ ctx.lineWidth=.7;ctx.strokeStyle='#f5fbff';ctx.shadowColor='#c6eaff';ctx.shadowBlur=2.2;ctx.beginPath();
  for(let i=0;i<6;i++){
   const a=i*Math.PI/3;ctx.moveTo(0,0);ctx.lineTo(Math.cos(a)*size,Math.sin(a)*size);
   const x=Math.cos(a)*size*.64,y=Math.sin(a)*size*.64;
@@ -169,9 +169,9 @@ function draw(time){
    // Nearby flakes stretch slightly in the direction of a gust: snow, not glowing orbs.
    const len=1+Math.min(2.6,Math.abs(vx)/55);
    ctx.save();ctx.translate(f.x,f.y);ctx.rotate(Math.atan2(vy,vx)+Math.PI/2);
-   ctx.fillStyle='#f2f7fa';ctx.beginPath();ctx.ellipse(0,0,f.radius*.72,f.radius*len,0,0,Math.PI*2);ctx.fill();ctx.restore();
+   ctx.shadowColor='#d5efff';ctx.shadowBlur=2.5;ctx.fillStyle='#f7fbff';ctx.beginPath();ctx.ellipse(0,0,f.radius*.72,f.radius*len,0,0,Math.PI*2);ctx.fill();ctx.restore();
   }else{
-   ctx.fillStyle=f.depth<.28?'#cbd9e2':'#f0f6fa';ctx.beginPath();ctx.arc(f.x,f.y,f.radius,0,Math.PI*2);ctx.fill();
+   ctx.fillStyle=f.depth<.28?'#dcebf5':'#f5fbff';ctx.beginPath();ctx.arc(f.x,f.y,f.radius,0,Math.PI*2);ctx.fill();
   }
  }
  ctx.globalAlpha=1;raf=requestAnimationFrame(draw);
