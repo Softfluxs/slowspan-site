@@ -35,9 +35,29 @@ main{position:relative;min-height:100svh;display:grid;place-items:center;padding
 footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 @media(max-width:480px){.profile{padding:36px 23px 27px}.moon{right:9%;width:70px}}
 @media(prefers-reduced-motion:reduce){.background-video{display:none}.scene{background:radial-gradient(ellipse at 50% 5%,#294661 0%,#10253b 43%,#06111e 100%)!important}.scene .moon,.scene .stars,.scene .trees,.scene .hills{opacity:1!important}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Accessible, cinematic Slowspan entrance */
+.entrance{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#173a54 0%,#081a2c 45%,#030c18 100%);transition:opacity .8s ease,visibility .8s ease}
+.entrance:before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0deg,#b9eaff17 40deg,transparent 90deg,#fff6 160deg,transparent 250deg);animation:entrance-aura 8s linear infinite}
+.entrance-inner{position:relative;text-align:center;animation:entrance-rise 1.3s cubic-bezier(.2,.8,.2,1) both}
+.entrance-monogram{font-family:Georgia,serif;font-size:clamp(110px,30vw,190px);font-weight:700;line-height:1;color:#e9f8ff;text-shadow:0 0 14px #c9f0ff,0 0 48px #9cd8ff99,0 0 100px #6bc8ff55;animation:entrance-glow 2.4s ease-in-out infinite alternate}
+.entrance-name{margin-top:15px;color:#e9f8ff;letter-spacing:.42em;text-transform:uppercase;font-size:12px;font-weight:700}
+.entrance-subtitle{margin-top:12px;color:#a7c4d8;letter-spacing:.12em;font-size:11px}
+.entrance-spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#e7f8ff;box-shadow:0 0 10px #e7f8ff;animation:entrance-drift var(--dur) linear infinite;left:var(--x);top:110%;opacity:0}
+.entrance.dismissed{opacity:0;visibility:hidden;pointer-events:none}
+.entrance-skip{position:absolute;bottom:max(26px,env(safe-area-inset-bottom));right:24px;border:1px solid #d8efff55;border-radius:999px;background:#17344caa;color:#e6f5ff;padding:9px 17px;cursor:pointer;font:inherit;font-size:12px}
+@keyframes entrance-rise{from{opacity:0;transform:translateY(30px) scale(.86);filter:blur(9px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes entrance-glow{to{text-shadow:0 0 20px #fff,0 0 65px #a4e2ff,0 0 110px #77bfff}}
+@keyframes entrance-aura{to{transform:rotate(360deg)}}
+@keyframes entrance-drift{10%{opacity:.8}85%{opacity:.65}100%{transform:translate3d(var(--drift),-120vh,0);opacity:0}}
+@media(prefers-reduced-motion:reduce){.entrance{display:none!important}}
 </style>
 </head>
 <body>
+<div class="entrance" id="entrance" role="presentation" aria-label="Slowspan loading animation">
+<div class="entrance-inner"><div class="entrance-monogram" aria-hidden="true">S</div><div class="entrance-name">Slowspan</div><div class="entrance-subtitle">A little corner of winter</div></div>
+<button class="entrance-skip" id="entrance-skip" type="button">Skip intro</button>
+</div>
 <video class="background-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" poster=""><source src="assets/slowspan-winter-background.mp4" type="video/mp4"></video><div class="video-shade" aria-hidden="true"></div>
 <div class="scene" aria-hidden="true"><div class="stars"></div><div class="moon"></div><div class="trees"></div><div class="hills"></div></div>
 <canvas id="snow" aria-hidden="true"></canvas>
@@ -139,6 +159,17 @@ motion.addEventListener('change',start);
 document.addEventListener('visibilitychange',start);
 resize();start();
 })();
+const entrance=document.getElementById('entrance');
+const skipEntrance=document.getElementById('entrance-skip');
+let entranceTimer;
+function dismissEntrance(){clearTimeout(entranceTimer);entrance.classList.add('dismissed');entrance.addEventListener('transitionend',()=>entrance.remove(),{once:true});}
+skipEntrance.addEventListener('click',dismissEntrance);
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){entrance.remove();}
+else{
+ const fragment=document.createDocumentFragment();
+ for(let i=0;i<30;i++){const star=document.createElement('i');star.className='entrance-spark';star.style.setProperty('--x',(Math.random()*100)+'%');star.style.setProperty('--dur',(2+Math.random()*3)+'s');star.style.setProperty('--drift',((Math.random()-.5)*150)+'px');star.style.animationDelay=(-Math.random()*4)+'s';fragment.appendChild(star);}
+ entrance.appendChild(fragment);entranceTimer=setTimeout(dismissEntrance,2800);
+}
 const holidayAudio=document.getElementById('holiday-audio');
 const musicToggle=document.getElementById('music-toggle');
 const musicProgress=document.getElementById('music-progress');
