@@ -42,24 +42,22 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 .avatar img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:50%}
 .avatar-initial{display:none}.avatar.avatar-fallback .avatar-initial{display:block}
 .avatar:hover{box-shadow:0 0 0 7px #e2f4ff22,0 0 38px #c2eaff77;transform:translateY(-4px)}
-.profile h1{display:inline-block;background:linear-gradient(105deg,#e5f6ff 15%,#91c9ed 38%,#fff 52%,#a7d7f3 72%,#e5f6ff 90%);background-size:230% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:name-arrive .9s ease-out both,name-shimmer 6s linear 1s infinite}
+.profile h1{display:inline-block;white-space:nowrap;background:linear-gradient(105deg,#e5f6ff 15%,#91c9ed 38%,#fff 52%,#a7d7f3 72%,#e5f6ff 90%);background-size:230% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:name-arrive .9s ease-out both,name-shimmer 6s linear 1s infinite}
 @keyframes avatar-arrive{from{opacity:0;transform:translateY(20px) scale(.78)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes avatar-float{0%,100%{translate:0 0}50%{translate:0 -5px}}
 @keyframes name-arrive{from{opacity:0;transform:translateY(12px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes name-shimmer{to{background-position:230% center}}
 @media(prefers-reduced-motion:reduce){.avatar,.profile h1{animation:none!important}}
-.profile h1 .moving-letter{display:inline-block;will-change:transform;animation:letter-wave 2.7s ease-in-out infinite;animation-delay:calc(var(--i) * .12s)}
-@keyframes letter-wave{0%,55%,100%{transform:translateY(0) rotate(0deg)}23%{transform:translateY(-8px) rotate(-3deg)}38%{transform:translateY(2px) rotate(2deg)}}
+.profile h1 .moving-letter{display:inline-block;position:relative;will-change:transform;animation:letter-wave 2.4s ease-in-out infinite;animation-delay:calc(var(--i) * -.15s)}
+@keyframes letter-wave{0%,100%{transform:translateY(0)}25%{transform:translateY(-9px)}50%{transform:translateY(0)}75%{transform:translateY(5px)}}
 @media(prefers-reduced-motion:reduce){.profile h1 .moving-letter{animation:none!important}}
 /* Accessible, cinematic Slowspan entrance */
-.entrance{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#173a54 0%,#081a2c 45%,#030c18 100%);transition:opacity .8s ease,visibility .8s ease}
+.entrance{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:#071422;transition:opacity .8s ease,visibility .8s ease}
 .entrance-inner{position:relative;text-align:center;animation:entrance-rise 1.3s cubic-bezier(.2,.8,.2,1) both}
 .entrance-monogram{font-family:Georgia,serif;font-size:clamp(110px,30vw,190px);font-weight:700;line-height:1;color:#e9f8ff;text-shadow:none;animation:none}
 .entrance-subtitle{margin-top:14px;color:#a7c4d8;letter-spacing:.12em;font-size:11px}
-.entrance-spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#e7f8ff;box-shadow:0 0 10px #e7f8ff;animation:entrance-drift var(--dur) linear infinite;left:var(--x);top:110%;opacity:0}
 .entrance.dismissed{opacity:0;visibility:hidden;pointer-events:none}
 @keyframes entrance-rise{from{opacity:0;transform:translateY(30px) scale(.86);filter:blur(9px)}to{opacity:1;transform:none;filter:blur(0)}}
-@keyframes entrance-drift{10%{opacity:.8}85%{opacity:.65}100%{transform:translate3d(var(--drift),-120vh,0);opacity:0}}
 @media(prefers-reduced-motion:reduce){.entrance-inner,.entrance-spark,.entrance-monogram{animation:none!important}}
 </style>
 </head>
@@ -79,7 +77,6 @@ footer{font-size:12px;color:#a7c1d2;margin-top:26px}footer span{color:#ffe2ac}
 <audio id="holiday-audio" preload="metadata" loop src="assets/Single%20Last%20Christmas.mp3"></audio>
 <div class="music-heading"><div class="music-art" aria-hidden="true">♫</div><div class="music-details"><strong>Last Christmas</strong><small>Holiday soundtrack</small></div>
 <button class="music-toggle" id="music-toggle" type="button" aria-label="Play music">▶</button></div>
-<div class="music-meta"><label for="music-volume">Volume <input class="music-volume" id="music-volume" type="range" min="0" max="1" step=".05" value=".6"></label></div>
 <p class="music-notice" id="music-notice" hidden>Tap play to start the music — your browser blocks automatic sound.</p>
 </section>
 </section></main>
@@ -165,14 +162,8 @@ const entrance=document.getElementById('entrance');
 function dismissEntrance(){entrance.classList.add('dismissed');entrance.addEventListener('transitionend',()=>entrance.remove(),{once:true});}
 entrance.addEventListener('click',()=>{tryPlay();dismissEntrance();});
 entrance.focus({preventScroll:true});
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
- const fragment=document.createDocumentFragment();
- for(let i=0;i<30;i++){const star=document.createElement('i');star.className='entrance-spark';star.style.setProperty('--x',(Math.random()*100)+'%');star.style.setProperty('--dur',(2+Math.random()*3)+'s');star.style.setProperty('--drift',((Math.random()-.5)*150)+'px');star.style.animationDelay=(-Math.random()*4)+'s';fragment.appendChild(star);}
- entrance.appendChild(fragment);
-}
 const holidayAudio=document.getElementById('holiday-audio');
 const musicToggle=document.getElementById('music-toggle');
-const musicVolume=document.getElementById('music-volume');
 const musicNotice=document.getElementById('music-notice');
 holidayAudio.volume=.6;
 function updateMusic(){
@@ -183,7 +174,6 @@ function updateMusic(){
 }
 async function tryPlay(){try{await holidayAudio.play();musicNotice.hidden=true;}catch(e){musicNotice.hidden=false;}updateMusic();}
 musicToggle.addEventListener('click',()=>{if(holidayAudio.paused)tryPlay();else holidayAudio.pause();});
-musicVolume.addEventListener('input',()=>{holidayAudio.volume=Number(musicVolume.value);});
 ['play','pause','timeupdate','loadedmetadata','ended'].forEach(name=>holidayAudio.addEventListener(name,updateMusic));
 // Music starts only when the visitor taps Enter or Play.
 const backgroundVideo=document.querySelector('.background-video');
